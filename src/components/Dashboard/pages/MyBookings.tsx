@@ -2,42 +2,52 @@ import { useState } from "react"
 import { ClipLoader } from "react-spinners";
 import { TBooking } from "../../../pages/Booking";
 
-import { useCancelBookingMutation, useGetBookingsQuery, useUpdateBookingMutation } from "../../../redux/features/booking/bookingApi";
+import { useCancelBookingMutation, useGetUserBookingsQuery, useUpdateBookingMutation } from "../../../redux/features/booking/bookingApi";
 import { RiEditCircleLine } from "react-icons/ri";
-import { FcApprove } from "react-icons/fc";
 import { FcCancel } from "react-icons/fc";
-import { IoShieldCheckmarkSharp } from "react-icons/io5";
 import { toast } from "sonner";
 import UpdateBookingModal from "../components/Modal/UpdateBookingModal";
-import { useReturnCarMutation } from "../../../redux/features/car/carApi";
+import { BsArrowUpRightSquareFill } from "react-icons/bs";
+import PaymentModal from "../components/Modal/PaymentModal";
 
-export default function ManageBooking() {
+export default function MyBooking(){
 
     const [openUpdateModal, setOpenUpdateModal ] = useState<boolean>(false);
-    const { data, isLoading: bookingsLoading } = useGetBookingsQuery(undefined);
+    const [openPayModal, setOpenPayModal ] = useState<boolean>(false);
+    const { data, isLoading: bookingsLoading } = useGetUserBookingsQuery(undefined);
     const [updateBooking, {isLoading: updateLoading} ] = useUpdateBookingMutation();
     const [cancelBooking ] = useCancelBookingMutation();
-    const [returnCar ] = useReturnCarMutation();
     const [updateBookingId, setUpdateBookingId ] = useState('')
+
 
 
     const bookings: TBooking[] = data?.data || []
 
-    // approve booking 
-    const approveBooking = async (bookingId: string) => {
-        const res = await updateBooking({
-          bookingId,
-          payload : { status : 'approved'}
-        })
+    
+    // send return request booking 
+    const sendReturnReq = async (bookingId: string) => {
 
-        if(res?.data?.success){
-          toast.success('Booking Approved!')
-        }
-        else{
-          toast.error('Something went wrong');
-        }
-    }
+      const currentTime = new Date();
+const hours = String(currentTime.getHours()).padStart(2, '0');
+const minutes = String(currentTime.getMinutes()).padStart(2, '0');
+const formattedTime = `${hours}:${minutes}`;
 
+
+      const res = await updateBooking({
+        bookingId,
+        payload : { isReturnProcess : true, endTime: formattedTime}
+      })
+
+      if(res?.data?.success){
+        toast.success('Return Request Sent')
+        location.reload();
+      }
+      else{
+        toast.error('Something went wrong');
+      }
+  }
+
+  
     // cancel booking 
     const cancelBookingIntoDB = async (bookingId: string, carId : string) => {
       const res = await cancelBooking({ bookingId, carId })
@@ -50,33 +60,22 @@ export default function ManageBooking() {
       }
     }
 
-    // return the car 
-    const confirmReturnBooking = async (bookingId: string) => {
-      const res = await returnCar({ bookingId })
-
-      if(res?.data?.success){
-        toast.success('The car has been Returned')
-      }
-      else{
-        toast.error('Something went wrong');
-      }
-    }
-
 
   return (
    <section className="max-w-[1300px] mx-auto px-4 my-2 md:my-6 lg:my-10 mb-10 font-prompt"> 
 
 
    <div className="flex justify-center items-center mb-3">
-   <h2 className="text-2xl md:text-4xl carter-one-regular text-zinc-300 ">Bookings</h2>
+   <h2 className="text-2xl md:text-4xl carter-one-regular text-zinc-300 ">My Bookings</h2>
    </div>
-
-   <h6 className="text-sm md:text-base  text-zinc-300 ">◽ The gray background of row indicates that user requested to return the car.</h6>
 
    <div className="text-right mb-7">
   
    {/* update booking modal  */}
    {openUpdateModal && <UpdateBookingModal bookingId={updateBookingId} open={openUpdateModal} setOpen={setOpenUpdateModal}/>}
+
+   {/* payment modal  */}
+   {openPayModal && <PaymentModal bookingId={updateBookingId} open={openPayModal} setOpen={setOpenPayModal}/>}
     
    </div>
 
@@ -99,11 +98,7 @@ export default function ManageBooking() {
                 className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600">
               Name
               </th>
-              <th
-                scope="col"
-                className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600">
-                  User
-              </th>
+             
               <th
                 scope="col"
                 className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600">
@@ -120,8 +115,9 @@ export default function ManageBooking() {
            Status
               </th>
              
-              <th scope="col" className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600">Approve Booking </th>
-            
+           
+            <th scope="col" className="border-r border-zinc-600 px-6 py-0 md:py-2 lg:py-4  ">Return REQ</th>
+
             <th scope="col" className="border-r border-zinc-600 px-6 py-0 md:py-2 lg:py-4  ">Cancel</th>
               
             
@@ -147,17 +143,7 @@ export default function ManageBooking() {
            aria-label="Loading Spinner"
            speedMultiplier={0.8} />}
           
-          {bookings?.map(booking =>  <tr key={booking._id} className={`border-b ${booking.isReturnProcess? 'bg-amber-400/10 group relative': ''}`}>
-
-              {/* for confirming the return request  */}
-            <div className="hidden bg-black/60 absolute w-full h-full group-hover:flex items-center">
-           
-            <button className={`bg-lime-600 hover:bg-lime-700 text-white rounded font-semibold transition-all  px-3 py-1 ml-56`}
-             onClick={() => confirmReturnBooking(booking._id!)} > 
-            Approve Return</button>
-  
-            </div>
-
+          {bookings?.map(booking =>  <tr key={booking._id} className="border-b ">
               <td
                 className="whitespace-nowrap border-r px-6 py-4 font-medium border-zinc-500 flex items-center justify-center">
                 
@@ -167,10 +153,7 @@ export default function ManageBooking() {
                 className=" border-r font-medium text-sm  text-zinc-400 text-start md:text-center px-6 py-4 border-zinc-500">
                 {booking.car.name}
               </td>
-              <td
-                className=" border-r font-medium text-sm  text-zinc-400 text-start md:text-center px-6 py-4 border-zinc-500">
-                {booking.user.email}
-              </td>
+             
               <td
                 className=" border-r font-medium text-sm   text-zinc-400 text-start md:text-center px-6 py-4 border-zinc-500">
                 {booking.date}
@@ -185,35 +168,39 @@ export default function ManageBooking() {
                 {booking.status}
               </td>
               
+             {booking.status === 'approved'?  <td
+                className="whitespace-nowrap font-medium text-zinc-400 text-sm  border-r px-6 py-4 border-zinc-500"> 
+
+               {booking.isReturnProcess === true? <span className="text-amber-500">IN Progress</span> :  <button className={` bg-white text-violet-600 rounded font-semibold transition-all md:text-3xl `}
+onClick={() => {sendReturnReq(booking._id!)}} >  <BsArrowUpRightSquareFill/> </button> }
+
+              </td> : <> <span> </span></>}
               
-          {booking.status === 'cancelled' || booking.status === 'completed'? <></> : <><td className="whitespace-nowrap font-medium border-r text-sm md:text-lg  px-6 py-4 border-zinc-500">
-             
-             <button className={`  text-white rounded font-semibold transition-all text-3xl `}
-             onClick={() => approveBooking(booking._id!)} > 
-            <IoShieldCheckmarkSharp/></button>
-    
-               </td>
+              
+          {booking.status === 'pending'? <>   <td className="whitespace-nowrap font-medium  text-sm md:text-lg  px-6 py-4 border border-zinc-400">
 
-              <td className="whitespace-nowrap font-medium  text-sm md:text-lg  px-6 py-4 border border-zinc-400">
+{/* delete product  */}
+<button className={`  text-white rounded font-semibold transition-all md:text-2xl `}
+onClick={() => cancelBookingIntoDB(booking._id!, booking.car._id!)} > 
+<FcCancel/></button>
 
-             {/* delete product  */}
-             <button className={`  text-white rounded font-semibold transition-all md:text-2xl `}
-             onClick={() => cancelBookingIntoDB(booking._id!, booking.car._id!)} > 
-            <FcCancel/></button>
+  </td>
+
+
+ <td className="whitespace-nowrap font-medium border-r text-sm md:text-lg  px-6 py-4 border-zinc-500">
+
+<button className={`bg-blue-700 p-1 px-2 md:py-2  text-white rounded font-semibold transition-all hover:bg-blue-800 text-[12px] md:text-base `}
+onClick={() => {
+ setUpdateBookingId(booking._id!)
+ setOpenUpdateModal(true)
+ }} > 
+<RiEditCircleLine/></button>
+
+  </td>
   
-               </td>
+  </> : <>
 
-
-              <td className="whitespace-nowrap font-medium border-r text-sm md:text-lg  px-6 py-4 border-zinc-500">
-             
-             <button className={`bg-blue-700 p-1 px-2 md:py-2  text-white rounded font-semibold transition-all hover:bg-blue-800 text-[12px] md:text-base `}
-             onClick={() => {
-              setUpdateBookingId(booking._id!)
-              setOpenUpdateModal(true)
-              }} > 
-            <RiEditCircleLine/></button>
-    
-               </td></>}
+           </>}
             </tr>)}
          
           </tbody>

@@ -42,7 +42,9 @@ export default function Login() {
         }))
 
         toast.success('Logged In Successfully')
-        navigate('/dashboard')
+        const role = decoded?.role;
+        role === 'user'? navigate('/dashboard/my-bookings')  :  navigate('/dashboard/manage-cars')
+        
        }
     }
 

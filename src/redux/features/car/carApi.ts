@@ -32,20 +32,6 @@ const productApi = baseApi.injectEndpoints({
             providesTags : ['Single-car']
         }),
 
-        // getBestSellingProducts : builder.query({
-        //     query: () => ({
-        //         url : `/best-selling-products`,
-        //         method : "GET",   
-        //     }),
-        // }),
-
-        // getFeaturedProducts : builder.query({
-        //     query: () => ({
-        //         url : `/featured-products`,
-        //         method : "GET",   
-        //     }),
-        // }),
-
         deleteCar : builder.mutation({
             query: (carId: string) => ({
                 url : `/api/cars/${carId}`,
@@ -63,6 +49,16 @@ const productApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['Cars','Single-car' ]
         }),
+
+        returnCar : builder.mutation({
+            query: (payload : {bookingId : string}) => ({
+                
+                url : `/api/cars/return`,
+                method : "PUT", 
+                body : payload,  
+            }),
+            invalidatesTags: ['Cars','Bookings' ]
+        }),
     })
 })
 
@@ -71,5 +67,5 @@ export const {
      useGetCarsQuery,
       useUpdateCarMutation,
        useDeleteCarMutation,
-        useGetSingleCarQuery
+        useGetSingleCarQuery, useReturnCarMutation
     } = productApi;

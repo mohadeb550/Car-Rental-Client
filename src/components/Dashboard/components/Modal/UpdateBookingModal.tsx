@@ -46,7 +46,6 @@ export default function UpdateBookingModal({ open, setOpen, bookingId} : TModalP
     const bookingData : Partial<TBooking> = {
       location : data.location,
       phone : data.phone,
-      status : data.status,
       date : data.date,
       startTime : data.startTime,
       paymentMethod : data.paymentMethod,
@@ -98,16 +97,6 @@ export default function UpdateBookingModal({ open, setOpen, bookingId} : TModalP
         <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("location")} />
         </div>
 
-        <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Booking Status</label>
-         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("status")} >
-              <option disabled selected>Status</option>
-              <option value='approved'>Approved</option>
-              <option value='pending'>Pending</option>
-              <option value='cancelled'>Cancelled</option>
-        </select>
-
-        </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
         <label className="font-semibold">Phone</label>

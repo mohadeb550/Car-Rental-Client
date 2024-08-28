@@ -22,6 +22,7 @@ export type TBooking = {
     paymentMethod : string;
     startTime : string;
     status? : string;
+    isReturnProcess? : boolean;
     endTime? : string;
     totalCost? : number;
     createdAt? : string,

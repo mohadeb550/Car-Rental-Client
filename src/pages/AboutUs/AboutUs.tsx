@@ -7,13 +7,47 @@ import { FaFacebookF } from "react-icons/fa";
 import { LuUser2 } from "react-icons/lu";
 import { TfiEmail } from "react-icons/tfi";
 import { MdOutlinePhone } from "react-icons/md";
-import Container from "../components/layout/Container";
+import Container from "../../components/layout/Container";
 import { FaLocationDot } from "react-icons/fa6";
-import TeamSection from "../components/ui/AboutUS/TeamSection/TeamSection";
+import TeamSection from "../../components/ui/AboutUS/TeamSection/TeamSection";
+import OurFleet from "./OurFleet";
 
 const AboutUs = () => {
     return (
         <Container>
+
+{/* history  */}
+
+
+<div className="py-8">
+  <div className="py-8 rounded-lg shadow-md">
+    <h2 className="text-3xl lg:text-4xl carter-one-regular text-center mb-4 text-gray-300 ">Company History</h2>
+    <p className=" mb-4 text-gray-400 lg:text-[17px]">
+      Established in 2005, our car rental company has grown from a small, local
+      business to one of the leading car rental services in the country. Over the
+      years, we have expanded our fleet to include a wide variety of vehicles,
+      ranging from compact cars to luxury SUVs, to meet the diverse needs of our
+      customers.
+    </p>
+    <p className=" mb-4 text-gray-400 lg:text-[17px]">
+      Our commitment to providing top-notch customer service and maintaining a
+      reliable fleet has earned us a loyal customer base and numerous accolades
+      within the industry. We have always strived to innovate and adapt to the
+      changing needs of our customers, introducing new technologies and services
+      to make the rental experience as seamless as possible.
+    </p>
+    <p className=" text-gray-400 lg:text-[17px]">
+      Today, we continue to build on our legacy of excellence, ensuring that every
+      customer enjoys a safe, convenient, and enjoyable rental experience. We look
+      forward to serving you and being a part of your journey.
+    </p>
+  </div>
+</div>
+
+{/* fleet  */}
+<OurFleet/>
+
+
          <div className="flex flex-col lg:flex-row md:gap-8 lg:gap-10 relative lg:mt-5">
 
             {/* left side  */}

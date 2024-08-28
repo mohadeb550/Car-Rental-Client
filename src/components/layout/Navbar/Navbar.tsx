@@ -49,7 +49,7 @@ const logoutUser = () => {
 {/* logo section  */}
 <div className="flex items-center gap-1" >
 {/* <img src='/6201330c4babde0004ca47f.png' className="w-24 md:w-32 lg:w-40 opacity-90"/> */}
- <h3 className="text-gray-100 carter-one-regular text-3xl">RENT</h3>
+ <h3 className="text-amber-500 carter-one-regular text-2xl md:text-3xl">ZipCar</h3>
 </div>
 
 

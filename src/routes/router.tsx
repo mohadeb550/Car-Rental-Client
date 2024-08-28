@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import OrderSuccessPage from "../pages/OrderSuccessPage";
-import AboutUs from "../pages/AboutUs";
+import AboutUs from "../pages/AboutUs/AboutUs";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import Dashboard from "../components/Dashboard/Dashboard";

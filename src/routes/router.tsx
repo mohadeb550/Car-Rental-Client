@@ -4,7 +4,6 @@ import Home from "../pages/Home";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import OrderSuccessPage from "../pages/OrderSuccessPage";
-import AboutUs from "../pages/AboutUs/AboutUs";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import Dashboard from "../components/Dashboard/Dashboard";
@@ -14,6 +13,7 @@ import CarDetails from "../pages/CarDetails";
 import Booking from "../pages/Booking";
 import ManageBooking from "../components/Dashboard/pages/ManageBooking";
 import MyBooking from "../components/Dashboard/pages/MyBookings";
+import AboutUs from "../pages/AboutUs";
 
 
 export const router = createBrowserRouter([

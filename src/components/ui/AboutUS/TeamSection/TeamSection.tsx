@@ -44,11 +44,10 @@ const TeamSection = () => {
     const [ teamData ] = useState(teams)
 
     return (
-            <div className="my-28 xl:my-36">
+            <div className="my-28 xl:my-44">
  
- <h1 className="text-[26px] md:text-3xl lg:text-[40px] text-gray-700 text-center " >Our Team Members </h1>
- <p className="text-center text-sm md:text-lg max-w-[1040px] mx-auto text-gray-600 mt-0 md:mt-2 mb-10 md:mb-16 lg:mb-20 font-play" >Experience the extraordinary with our range of signature products.  promising an unforgettable dining experience.</p>
-
+ <h2 className="text-3xl lg:text-4xl carter-one-regular text-center text-gray-300 mb-12">Team Members</h2>
+ 
             {/* grid container  */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-9">
                  {teamData?.map(person => <TeamCard key={person.id} name={person.userName} position={person.position} image={person.image} />)}

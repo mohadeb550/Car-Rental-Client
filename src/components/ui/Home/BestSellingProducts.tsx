@@ -1,8 +1,8 @@
 
 import { Link } from "react-router-dom";
-import ProductCard from "../ProductsPage/ProductCard";
+import ProductCard from "../CarsPage/CarCard";
 import Container from "../../layout/Container";
-import { useGetBestSellingProductsQuery } from "../../../redux/features/product/productApi";
+import { useGetBestSellingProductsQuery } from "../../../redux/features/car/carApi";
 import { TProduct } from "../Modal/CreateProductModal";
 
 const cars = [

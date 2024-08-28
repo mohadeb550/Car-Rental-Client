@@ -33,15 +33,16 @@ export default function Login() {
         }
        else if(res?.data?.success){
         const userImage = res?.data?.data?.image;
+        const name = res?.data?.data?.name;
         // decode the jwt token 
         const decoded = jwtDecode(res.data.token);
         dispatch(setUser({
-          user : { ...decoded, image : userImage },
+          user : { ...decoded, image : userImage, name },
           token : res.data.token
         }))
 
         toast.success('Logged In Successfully')
-        navigate('/')
+        navigate('/dashboard')
        }
     }
 

@@ -1,31 +1,33 @@
 import Headroom from "react-headroom"
 import DrawerNav from "./DrawerNavbar"
 import { HiOutlineMenu } from "react-icons/hi";
-import { Link, NavLink } from "react-router-dom";
-import { LuShoppingCart } from "react-icons/lu";
-import { FiHeart } from "react-icons/fi";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import Container from "../Container";
 import { HiMagnifyingGlass } from "react-icons/hi2";
-import { logout, useCurrentUser } from "../../../redux/features/authentication/authSlice";
 import { toast } from "sonner";
+import { logout } from "../../../redux/features/authentication/authSlice";
 
 
 export default function Navbar() {
-  const cartItems = useAppSelector(state => state.cart);
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.auth.user)
+  const navigate = useNavigate()
 
-
+const logoutUser = () => {
+  dispatch(logout())
+  toast.success('Logout Successfully!');
+   navigate('/')
+   }
   
   const navLinks = <>
    <li ><NavLink to='/' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Home</NavLink></li>
    
-   <li ><NavLink to='/products' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Products</NavLink></li>
+   <li ><NavLink to='/cars' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Cars</NavLink></li>
 
    <li ><NavLink to='/cart' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Cart</NavLink></li>
 
-   <li ><NavLink to='/product-management' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Product Management</NavLink></li>
+   <li ><NavLink to='/dashboard' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Dashboard</NavLink></li>
 
 
    <li ><NavLink to='/about-us' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >About Us</NavLink></li>
@@ -63,11 +65,6 @@ export default function Navbar() {
 {/* cart  */}  
 <div className="mr-3 md:mr-5 rounded-full text-xl md:text-[22px] lg:text-2xl text-black flex gap-5 md:gap-6 items-center">
 
-    <div className="relative hover:bg-gray-700 rounded-full ">
-     {cartItems.length?  <p className="bg-red-500 size-5 absolute -top-2 -right-3 text-sm text-white font-semibold flex items-center justify-center rounded-full">{cartItems.length}</p> : ''}
-    <Link to={'/cart'}> <LuShoppingCart className="text-gray-300"/></Link>
-    </div>
-    
     <HiMagnifyingGlass  className="text-gray-300"/>
  
 
@@ -83,7 +80,7 @@ export default function Navbar() {
      <ul tabIndex={0} className={`dropdown-content p-2 shadow bg-zinc-100 rounded w-52 `}>
       {user && <li className="text-lg p-2 border-b rounded text-zinc-800 flex items-center gap-2"> {user?.name || 'User'}  <img tabIndex={0} src={user?.image || 'https://i.ibb.co/Ttgtb82/pngwing-com-15.png' } className="w-8 h-8 object-cover rounded-full border border-gray-300 p-[1px]" /></li>}
         
-     <li className="text-base inter-regular cursor-pointer transition-all text-zinc-800 p-1 rounded hover:underline" onClick={()=> {dispatch(logout()); toast.success('Logout Successfully!')} }> Log out</li> 
+     <li className="text-base inter-regular cursor-pointer transition-all text-zinc-800 p-1 rounded hover:underline" onClick={logoutUser}> Log out</li> 
 
     </ul>}
     </div>

@@ -1,15 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../components/root/Root";
 import Home from "../pages/Home";
-import ProductManagement from "../pages/ProductManagement";
-import Products from "../pages/Products";
-import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import OrderSuccessPage from "../pages/OrderSuccessPage";
 import AboutUs from "../pages/AboutUs";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
+import Dashboard from "../components/Dashboard/Dashboard";
+import ManageCars from "../components/Dashboard/pages/ManageCars";
+import Cars from "../pages/Cars";
+import CarDetails from "../pages/CarDetails";
+import Booking from "../pages/Booking";
+import ManageBooking from "../components/Dashboard/pages/ManageBooking";
 
 
 export const router = createBrowserRouter([
@@ -22,25 +25,21 @@ export const router = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path: '/product-management',
-                element: <ProductManagement/>
+                path: '/cars/:carId',
+                element: <CarDetails/>
             },
             {
-                path: '/products',
-                element: <Products/>
+                path: '/booking/:carId',
+                element: <Booking/>
             },
             {
-                path: '/products/:productId',
-                element: <ProductDetails/>
+                path: '/cars',
+                element: <Cars/>
             },
-            {
-                path: '/cart',
-                element: <Cart/>
-            },
-            {
-                path: '/checkout',
-                element: <Checkout/>
-            },
+            // {
+            //     path: '/checkout',
+            //     element: <Checkout/>
+            // },
             {
                 path: '/order-successful',
                 element: <OrderSuccessPage/>
@@ -60,4 +59,12 @@ export const router = createBrowserRouter([
             },
         ]
     },
+
+    // dashboard 
+
+    {path: "/dashboard", element:  <Dashboard/>, children: [
+
+        {path: "manage-cars", element: <ManageCars/> },
+        {path: "manage-bookings", element: <ManageBooking/> },
+    ]},
 ])

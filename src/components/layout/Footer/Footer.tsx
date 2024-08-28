@@ -10,7 +10,7 @@ export default function Footer() {
     
   return (
    <Container>
-     <div className="mt-24 lg:mt-32">
+     <div className="mt-24 lg:mt-44 ">
         <section className="grid grid-cols-12 gap-8 pb-8">
 
             <div className="space-y-5 col-span-12 md:col-span-4 lg:col-span-5 xl:col-span-3">

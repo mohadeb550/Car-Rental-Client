@@ -8,11 +8,11 @@ setFilterQuery : React.Dispatch<React.SetStateAction<Record<string, unknown>>>
 export default function SearchBanner( { setFilterQuery } : TModalProps) {
 
   return (
-   <div className="hero h-180px] lg:h-[200px] xl:h-[220px] mb-3 md:mb-8 font-play" style={{backgroundImage: 'url(https://i.ibb.co/KG6tS9C/43743.jpg)'}}>
+   <div className="hero h-180px] lg:h-[200px] xl:h-[220px] mb-3 md:mb-8" style={{backgroundImage: 'url(https://st4.depositphotos.com/1006839/20724/i/450/depositphotos_207249444-stock-photo-front-view-generic-brandless-moder.jpg)'}}>
   <div className="hero-overlay bg-opacity-60"></div>
   <div className="hero-content text-center text-neutral-content">
     <div className="max-w-4xl space-y-2 lg:space-y-5">
-      <h1 className=" text-3xl lg:text-5xl font-bold">All Products</h1>
+      <h1 className=" text-3xl lg:text-5xl carter-one-regular">All CARS</h1>
       <p className="text-sm md:text-base">Experience the extraordinary with our range of signature dishes meticulousl.</p>
       
 <div className='max-w-md mx-auto'>

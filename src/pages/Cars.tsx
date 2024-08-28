@@ -1,32 +1,32 @@
 
 import { useState } from "react";
-import SearchBanner from "../components/ui/ProductsPage/SearchBanner";
-import { useGetProductsQuery } from "../redux/features/product/productApi";
+import SearchBanner from "../components/ui/CarsPage/SearchBanner";
 import { ClipLoader } from "react-spinners";
-import ProductCard from "../components/ui/ProductsPage/ProductCard";
 import Container from "../components/layout/Container";
-import { TProduct } from "../components/ui/Modal/CreateProductModal";
+import { TCar } from "../components/Dashboard/components/Modal/CreateCarModal";
+import { useGetCarsQuery } from "../redux/features/car/carApi";
+import CarCard from "../components/ui/CarsPage/CarCard";
 
 
-
-export default function Products() {
+export default function Cars() {
 
   const [ filterQuery, setFilterQuery ] = useState({})
-    const { data , isFetching } = useGetProductsQuery(filterQuery);
-    const products : TProduct[] = data?.data || [];
+    const { data , isFetching } = useGetCarsQuery(filterQuery);
+    const cars : TCar[] = data?.data || [];
 
     const resetFilterQuery = () => {
       setFilterQuery({})  
     }
   return (
-    
-<Container>
+    <section className="pb-12">
+        <SearchBanner setFilterQuery={setFilterQuery} />
+      <Container>
+
      <section className="my-2 md:my-6 lg:my-8 " >
     
-          <SearchBanner setFilterQuery={setFilterQuery} />
       
         {isFetching && <ClipLoader
-           color='#000002'
+           color='#FBBF24'
            size={60}
            className="absolute top-72 md:top-2/4 left-2/4"
            aria-label="Loading Spinner"
@@ -80,16 +80,17 @@ export default function Products() {
           </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-7  mb-8 md:mb-16 xl:mt-20">
-            {products?.map(product => <ProductCard key={product._id} product={product} /> )}
+            {cars?.map(car => <CarCard key={car._id} car={car} /> )}
         </div> 
 
-          {/* no products direction  */}
-        { (!products || !products.length) && <p className="text-base md:text-lg mt-4 text-center">No Products Found</p>}
+          {/* no cars direction  */}
+        { (!cars || !cars.length) && <p className="text-base md:text-lg mt-4 text-center">No Products Found</p>}
 
         </section>
           
     </section>
 </Container>
+    </section>
  
   )
 }

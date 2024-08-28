@@ -24,7 +24,7 @@ export default function Banner() {
 
 <div className="flex items-center gap-3">
 <Link to={'/products'}>
-<button className="px-6 lg:px-8 text-sm lg:text-base  py-2 md:py-2 xl:py-3 font-semibold text-white rounded-xl transition bg-zinc-700 hover:bg-zinc-800 flex items-center gap-2">Explore Now  <span className="text-xl"><GoArrowUpRight/></span></button></Link>
+<button className="px-6 lg:px-8 text-sm lg:text-base  py-2 md:py-2 xl:py-3 font-semibold text-white rounded-xl transition bg-amber-500 hover:bg-zinc-800 flex items-center gap-2">Book Now  <span className="text-xl"><GoArrowUpRight/></span></button></Link>
 
 <Link to={'/products'}>
 <button className="px-6 lg:px-8 text-sm lg:text-base  py-2 md:py-2 xl:py-3 font-semibold text-gray-300 border border-zinc-700 rounded-xl transition hover:bg-[#8FA692]/20 flex items-center gap-2">Watch Video <span className="text-xl"><MdPlayCircle/></span></button></Link>

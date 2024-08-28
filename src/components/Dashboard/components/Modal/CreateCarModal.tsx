@@ -1,21 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {useForm } from "react-hook-form";
-import { useCreateProductMutation } from "../../../redux/features/product/productApi";
 import { ClipLoader } from "react-spinners";
 import { toast } from "sonner";
+import { useCreateCarMutation } from "../../../../redux/features/car/carApi";
 
 // type for car
 export type TCar = {
     _id? : string,
-    product_name : string,
-    category : string,
-    quantity? : number,
-    stock_quantity : number,
-    price : number,
-    description : string,
-    rating : number,
+    name : string;
+    description : string;
     images : string[];
+    color : string;
+    isElectric : boolean;
+    status? : string;
+    features : string[];
+    pricePerHour : number;
+    isDeleted? : boolean;
     createdAt? : string,
     updatedAt? : string,
 };
@@ -26,34 +27,35 @@ type TModalProps = {
 }
 
 
-export default function CreateProductModal({ open, setOpen} : TModalProps) {
+export default function CreateCarModal({ open, setOpen} : TModalProps) {
 
   const { register, handleSubmit } = useForm();
-  const [createProduct, { isLoading }] = useCreateProductMutation();
-
+  const [createCar, { isLoading }] = useCreateCarMutation();
 
   // console.log(res)
 
   const onSubmit = async (data: any ) => {
     
-  const productData : TProduct = {
-    product_name : data.productName,
-    category : data.category.toLowerCase(),
-    stock_quantity : parseInt(data.stockQuantity),
-    price : parseInt(data.price),
+  const carData : TCar = {
+    name : data.name,
+    isElectric : data.isElectric === 'yes'? true : false,
+    color : data.color,
+    pricePerHour : parseInt(data.pricePerHour),
     description : data.description,
-    rating : parseFloat(data.rating),
+    features : data.features.toUpperCase().split(','),
     images : [ data.image1, data.image2, data.image3],
   }
 
+  // Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque non aperiam sed voluptatem est nobis, tempore vel magni nemo voluptas? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque non aperiam sed voluptatem est nobis, tempore vel magni nemo voluptas?
+
   try {
-    const response =  await createProduct(productData).unwrap();
+    const response =  await createCar(carData).unwrap();
 
   if(response?.success){
     // close the modal 
     setOpen(false)
     // show a toast 
-    toast.success('New Product has been created')
+    toast.success('New Car has been created')
   }
   }catch(error){
     toast.error('Something went wrong')
@@ -80,39 +82,33 @@ export default function CreateProductModal({ open, setOpen} : TModalProps) {
       </div>}
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Product Name</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("productName")} />
+        <label className="font-semibold">Car Name</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("name")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Category</label>
-         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("category")} >
-              <option disabled selected>Select Category</option>
-              <option value='camp kitchen'>Camp Kitchen</option>
-              <option value='gear'>Gear</option>
-              <option value='power'>Power</option>
-              <option value='personal care'>Personal Care</option>
-              <option value='sleeping'>Sleeping</option>
-              <option value='shelter'>Shelter</option>
-              <option value='furry friends'>Furry Friends</option>
-              <option value='merch'>Merch</option>
+        <label className="font-semibold">Electric</label>
+         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("isElectric")} >
+              <option disabled selected>Select</option>
+              <option value='yes'>Yes</option>
+              <option value='no'>No</option>
         </select>
 
         </div>
      
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Stock Quantity</label>
-        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("stockQuantity")} />
+        <label className="font-semibold">Color</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("color")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Price</label>
-        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("price")} />
+        <label className="font-semibold">Price Per Hour</label>
+        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("pricePerHour")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Rating</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("rating")} />
+        <label className="font-semibold">Features <span className="text-sm inter-regular text-lime-600"> (Each feature must be separated by comma)</span> </label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("features")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
@@ -132,7 +128,7 @@ export default function CreateProductModal({ open, setOpen} : TModalProps) {
        
 
 
-<button type="submit" className="px-8 text-sm lg:text-base mt-6 mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-black hover:bg-gray-800 "> Add</button>
+<button type="submit" className="px-8 text-sm lg:text-base mt-6 mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-black hover:bg-gray-800 "> Create</button>
 
 <button onClick={() => setOpen(!open)} className="px-8 text-sm lg:text-base mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-red-600 hover:bg-red-700 "> Close </button>
 </form>

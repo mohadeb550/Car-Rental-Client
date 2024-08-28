@@ -1,70 +1,69 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {useForm } from "react-hook-form";
-import { useGetSingleProductQuery, useUpdateProductMutation } from "../../../redux/features/product/productApi";
 import { ClipLoader } from "react-spinners";
 import { toast } from "sonner";
-import { TProduct } from "./CreateProductModal";
 import { useEffect } from "react";
+import { useGetSingleCarQuery, useUpdateCarMutation } from "../../../../redux/features/car/carApi";
+import { TCar } from "./CreateCarModal";
 
 
 type TModalProps = {
-    productId : string,
+    carId : string,
   open : boolean,
   setOpen : React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
-export default function UpdateProductModal({ open, setOpen, productId} : TModalProps) {
+export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
 
   const { register, handleSubmit, reset } = useForm();
-  const [ updateProduct, { isLoading: updateLoading }] = useUpdateProductMutation();
-  const { data, isLoading: dataLoading , isSuccess} = useGetSingleProductQuery(productId);
-  const product : TProduct = data?.data;
+  const [ updateCar, { isLoading: updateLoading }] = useUpdateCarMutation();
+  const { data, isLoading: dataLoading , isSuccess} = useGetSingleCarQuery(carId);
+  const car : TCar = data?.data;
 
 
     // Set the default values dynamically
     useEffect(() => {
       if(isSuccess){
         reset({
-          productName : product.product_name,
-          category : product.category,
-          stockQuantity : product.stock_quantity,
-          price : product.price,
-          description : product.description,
-          rating : product.rating,
-          image1 : product.images[0],
-          image2 : product.images[1],
-          image3 : product.images[2],
+          name : car.name,
+          isElectric : car.isElectric? 'yes' : 'no',
+          color : car.color,
+          pricePerHour : car.pricePerHour,
+          description : car.description,
+          features : car.features?.join(','),
+          image1 : car.images[0],
+          image2 : car.images[1],
+          image3 : car.images[2],
         });
       }
-    }, [reset, product, isSuccess]);
+    }, [reset, car, isSuccess]);
 
 
   const onSubmit = async (data: any) => {
     
-  const productData : TProduct = {
-    product_name : data.productName,
-    category : data.category,
-    stock_quantity : parseInt(data.stockQuantity),
-    price : parseInt(data.price),
-    description : data.description,
-    rating : parseFloat(data.rating),
-    images : [ data.image1, data.image2, data.image3],
-  }
-
+    const carData : TCar = {
+      name : data.name,
+      isElectric : data.isElectric === 'yes'? true : false,
+      color : data.color,
+      pricePerHour : parseInt(data.pricePerHour),
+      description : data.description,
+      features : data.features.toUpperCase().split(','),
+      images : [ data.image1, data.image2, data.image3],
+    }
 
   try {
-    const response =  await updateProduct({
-      productId : product._id!,
-      payload : productData,
+    const response =  await updateCar({
+      carId : car._id!,
+      payload : carData,
     }).unwrap();
 
   if(response?.success){
     // close the modal 
     setOpen(false)
     // show a toast 
-    toast.success('Product has been updated successfully')
+    toast.success('Car has been updated successfully')
   }
   }catch(error){
     toast.error('Something went wrong')
@@ -88,40 +87,35 @@ export default function UpdateProductModal({ open, setOpen, productId} : TModalP
       </div> : ""}
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Product Name</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("productName")} />
+        <label className="font-semibold">Name</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("name")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Category</label>
-         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("category")} >
-              <option disabled selected>Select Category</option>
-              <option value='camp kitchen'>Camp Kitchen</option>
-              <option value='gear'>Gear</option>
-              <option value='power'>Power</option>
-              <option value='personal care'>Personal Care</option>
-              <option value='sleeping'>Sleeping</option>
-              <option value='shelter'>Shelter</option>
-              <option value='furry friends'>Furry Friends</option>
-              <option value='merch'>Merch</option>
+        <label className="font-semibold">Electric</label>
+         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("isElectric")} >
+              <option disabled selected>Select</option>
+              <option value='yes'>Yes</option>
+              <option value='no'>No</option>
         </select>
 
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Stock Quantity</label>
-        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("stockQuantity")} />
+        <label className="font-semibold">Color</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("color")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Price</label>
-        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("price")} />
+        <label className="font-semibold">Price Per Hour</label>
+        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("pricePerHour")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Rating</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("rating")} />
+        <label className="font-semibold">Features <span className="text-sm inter-regular text-lime-600"> (Each feature must be separated by comma)</span> </label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("features")} />
         </div>
+
 
         <div className="flex flex-col justify-start items-start mb-3">
         <label className="font-semibold">Description</label>

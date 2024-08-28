@@ -52,5 +52,5 @@
 
   .gradient-background{
     background: rgb(0,1,6);
-background: linear-gradient(169deg, rgba(0,1,6,1) 26%, rgba(40,40,43,1) 68%);
+    background: linear-gradient(169deg, rgba(0,1,6,1) 26%, rgba(33,36,51,1) 68%);
   }

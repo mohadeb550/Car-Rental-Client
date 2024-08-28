@@ -10,7 +10,7 @@ const Root = () => {
         <div className="bg-[#000209]">
             
         <Navbar/>
-                <div className="bg-[#1C1C20]">
+                <div className="bg-[#212433]">
                 <Outlet/>
                 </div>
         <Footer/>

@@ -14,9 +14,17 @@ import Booking from "../pages/Booking";
 import ManageBooking from "../components/Dashboard/pages/ManageBooking";
 import MyBooking from "../components/Dashboard/pages/MyBookings";
 import AboutUs from "../pages/AboutUs";
+import ManageReturnCars from "../components/Dashboard/pages/ManageReturnCars";
+import ManageUsers from "../components/Dashboard/pages/ManageUsers";
+import UserOverview from "../components/Dashboard/pages/UserOverview";
+import ErrorPage from "../pages/ErrorPage";
 
 
 export const router = createBrowserRouter([
+    {
+        path: "*",
+        element: <ErrorPage />,
+      },
     {
         path : '/',
         element : <Root/> ,
@@ -60,7 +68,6 @@ export const router = createBrowserRouter([
             },
         ]
     },
-
     // dashboard 
 
     {path: "/dashboard", element:  <Dashboard/>, children: [
@@ -68,5 +75,8 @@ export const router = createBrowserRouter([
         {path: "manage-cars", element: <ManageCars/> },
         {path: "manage-bookings", element: <ManageBooking/> },
         {path: "my-bookings", element: <MyBooking/> },
+        {path: "manage-return-cars", element: <ManageReturnCars/> },
+        {path: "manage-users", element: <ManageUsers/> },
+        {path: "user-overview", element: <UserOverview/> },
     ]},
 ])

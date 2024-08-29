@@ -71,7 +71,8 @@ export default function ManageBooking() {
    <h2 className="text-2xl md:text-4xl carter-one-regular text-zinc-300 ">Bookings</h2>
    </div>
 
-   <h6 className="text-sm md:text-base  text-zinc-300 ">◽ The gray background of row indicates that user requested to return the car.</h6>
+   <h6 className="text-sm md:text-base  text-zinc-400 ">◽ The gray background of row indicates that user requested to return the car.</h6>
+   <h6 className="text-sm md:text-base  text-zinc-400 ">◽ To approve a booking click on the approve icon.</h6>
 
    <div className="text-right mb-7">
   

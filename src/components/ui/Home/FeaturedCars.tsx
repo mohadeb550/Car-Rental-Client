@@ -17,7 +17,7 @@ function FeaturedCars() {
 
 
 <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-7  mb-8 md:mb-16 pb-16">
-    {cars?.map(car => <CarCard key={car._id} car={car} /> )}
+    {cars?.slice(0,8).map(car => <CarCard key={car._id} car={car} /> )}
 </div> 
         
     

@@ -1,20 +1,18 @@
 
+
 import { useState } from "react";
-import SearchBanner from "../components/ui/CarsPage/SearchBanner";
 import { ClipLoader } from "react-spinners";
-import Container from "../components/layout/Container";
-import { TCar } from "../components/Dashboard/components/Modal/CreateCarModal";
-import { useGetCarsQuery } from "../redux/features/car/carApi";
-import CarCard from "../components/ui/CarsPage/CarCard";
+import { useGetCarsQuery } from "../../../redux/features/car/carApi";
+import { TCar } from "../../Dashboard/components/Modal/CreateCarModal";
+import Container from "../../layout/Container";
+import RelatedCarCard from "./RelatedCarCard";
 
 
-export default function Cars() {
+export default function RelatedCars() {
 
-  const [ filterQuery, setFilterQuery ] = useState({})
+  const [ filterQuery, setFilterQuery ] = useState({ status : 'available'})
     const { data , isFetching } = useGetCarsQuery(filterQuery);
     const cars : TCar[] = data?.data || [];
-
-    console.log(cars)
 
      //  {
                 // location : 'tangail'
@@ -24,21 +22,17 @@ export default function Cars() {
                 // status : 'unavailable'
         //  }
 
-    const resetFilterQuery = () => {
-      setFilterQuery({})  
-    }
   return (
-    <section className="pb-12">
-        <SearchBanner setFilterQuery={setFilterQuery} />
+    <section className="">
       <Container>
 
-     <section className="my-2 md:my-6 lg:my-8 " >
+     <section className="my-2 md:my-6 lg:my-9 relative" >
     
       
         {isFetching && <ClipLoader
            color='#FBBF24'
            size={60}
-           className="absolute top-72 md:top-2/4 left-2/4"
+           className="absolute top-0 md:top-2/4 left-2/4"
            aria-label="Loading Spinner"
            speedMultiplier={0.8} /> }
 
@@ -46,6 +40,14 @@ export default function Cars() {
 
           {/* all filtering section  */}
           <div className="flex justify-between md:justify-end my-6 gap-3 flex-wrap-reverse">
+
+          <div>
+        <input onChange={(e) => setFilterQuery(prev => ({...prev, location: e.target.value}))}
+        className="peer h-full w-full outline-none text-sm text-gray-800 placeholder:text-gray-700 px-4 rounded"
+        type="text"
+        id="search"
+        placeholder="Search cars by location..." /> 
+        </div>
             
           <select 
           onChange={(e)=> setFilterQuery(prev => ({...prev, sortByCost: e.target.value}))}
@@ -55,18 +57,7 @@ export default function Cars() {
                <option value='-1'> High to Low</option>
         </select>
 
-          <select
-           onChange={(e)=> setFilterQuery(prev => ({...prev, costRange: e.target.value}))}
-
-            className=" max-w-xs outline p-2 outline-black/20 rounded-sm outline-1 text-xs md:text-sm">
-              <option disabled selected>Filter by cost</option>
-               <option value='0-20'>0 - 20$</option>
-               <option value='20-40'>20 - 40$</option>
-               <option value='40-60'>40 - 60$</option>
-               <option value='60-80'>60 - 80$</option>
-               <option value='80-100'>80 - 100$</option>
-               <option value='0-0'>Custom</option>
-        </select>
+        
         
         <select 
         onChange={(e) => setFilterQuery(prev => ({...prev, carType: e.target.value}))}
@@ -83,12 +74,9 @@ export default function Cars() {
 
           </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-7  mb-8 md:mb-16 xl:mt-20">
-            {cars?.map(car => <CarCard key={car._id} car={car} /> )}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 justify-items-center gap-7  mb-8 md:mb-16 xl:mt-6">
+            {cars?.slice(0, 4)?.map(car => <RelatedCarCard key={car._id} car={car} /> )}
         </div> 
-
-          {/* no cars direction  */}
-        { (!cars || !cars.length) && <p className="text-base md:text-lg mt-4 text-center">No Products Found</p>}
 
         </section>
           

@@ -23,11 +23,11 @@ export default function SearchBanner( { setFilterQuery } : TModalProps) {
             </svg>
         </div>
 
-        <input onChange={(e) => setFilterQuery(prev => ({...prev, searchValue: e.target.value}))}
+        <input onChange={(e) => setFilterQuery(prev => ({...prev, location: e.target.value}))}
         className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
         type="text"
         id="search"
-        placeholder="Search products..." /> 
+        placeholder="Search cars by location..." /> 
     </div>
 </div>
     </div>

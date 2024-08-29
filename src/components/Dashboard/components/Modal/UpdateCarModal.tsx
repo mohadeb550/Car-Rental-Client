@@ -28,8 +28,10 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
       if(isSuccess){
         reset({
           name : car.name,
+          carType : car.carType,
           isElectric : car.isElectric? 'yes' : 'no',
           color : car.color,
+          location : car.location,
           pricePerHour : car.pricePerHour,
           description : car.description,
           features : car.features?.join(','),
@@ -45,8 +47,10 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
     
     const carData : TCar = {
       name : data.name,
+      carType : data.carType,
       isElectric : data.isElectric === 'yes'? true : false,
       color : data.color,
+      location : data.location,
       pricePerHour : parseInt(data.pricePerHour),
       description : data.description,
       features : data.features.toUpperCase().split(','),
@@ -92,6 +96,20 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
+        <label className="font-semibold">Car Type</label>
+         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("carType")} >
+         <option disabled selected>Select</option>
+              <option value='compact'>Compact</option>
+              <option value='suv'>SUVs</option>
+              <option value='luxury'>Luxury</option>
+              <option value='pickup/truck'>Pickups / Trucks</option>
+              <option value='electric'>Electric</option>
+              <option value='convertibles'>Convertibles</option>
+        </select>
+
+        </div>
+
+        <div className="flex flex-col justify-start items-start mb-3">
         <label className="font-semibold">Electric</label>
          <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("isElectric")} >
               <option disabled selected>Select</option>
@@ -104,6 +122,11 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
         <div className="flex flex-col justify-start items-start mb-3">
         <label className="font-semibold">Color</label>
         <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("color")} />
+        </div>
+
+        <div className="flex flex-col justify-start items-start mb-3">
+        <label className="font-semibold">Location</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("location")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
@@ -131,7 +154,7 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
         </div>}
        
 
-<button type="submit" className="px-8 text-sm lg:text-base mt-6 mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-black hover:bg-gray-800 ">Modify</button>
+<button type="submit" className="px-8 text-sm lg:text-base mt-6 mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-blue-600 hover:bg-blue-700 ">Modify</button>
 
 <button onClick={() => setOpen(!open)} className="px-8 text-sm lg:text-base mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-red-600 hover:bg-red-700 "> Close </button>
 </form>

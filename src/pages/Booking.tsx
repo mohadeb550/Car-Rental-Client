@@ -11,6 +11,7 @@ import { useAppSelector } from '../redux/hooks';
 import { useState } from 'react';
 import { useGetSingleUserQuery } from '../redux/features/user/userApi';
 import ConfirmBookingModal from '../components/ui/Modal/ConfirmBookingModal';
+import RelatedCars from '../components/ui/BookingPage/RelatedCars';
 
 export type TBooking = {
     _id? : string;
@@ -72,6 +73,9 @@ const Booking = () => {
 
     return (
         <Container>
+              <RelatedCars/>
+
+
         <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
 
             <div className="flex justify-start item-start space-y-2 flex-col ">
@@ -197,13 +201,6 @@ const Booking = () => {
             </div>
         </div>
 
-        {/* Related CArs for booking easily */}
-
-        <h1 className="text-zinc-400 text-center text-3xl lg:text-4xl carter-one-regular my-14">Related Cars</h1>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-7  mb-8 md:mb-16 pb-16">
-            {allCars?.map(car => <CarCard key={car._id} car={car} /> )}
-        </div> 
 
         </Container>
     );

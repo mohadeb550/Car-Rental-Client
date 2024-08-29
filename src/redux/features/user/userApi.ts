@@ -1,5 +1,6 @@
 
 import baseApi from "../../api/baseApi";
+import { TUser } from "../authentication/authSlice";
 
 
 const userApi = baseApi.injectEndpoints({
@@ -22,40 +23,26 @@ const userApi = baseApi.injectEndpoints({
             providesTags : ['Single-user']
         }),
 
-        // getBestSellingProducts : builder.query({
-        //     query: () => ({
-        //         url : `/best-selling-products`,
-        //         method : "GET",   
-        //     }),
-        // }),
+        deleteUser : builder.mutation({
+            query: (userId: string) => ({
+                url : `/api/users/${userId}`,
+                method : "DELETE",   
+            }),
+            invalidatesTags: ['Users']
+        }),
 
-        // getFeaturedProducts : builder.query({
-        //     query: () => ({
-        //         url : `/featured-products`,
-        //         method : "GET",   
-        //     }),
-        // }),
-
-        // deleteCar : builder.mutation({
-        //     query: (carId: string) => ({
-        //         url : `/api/cars/${carId}`,
-        //         method : "DELETE",   
-        //     }),
-        //     invalidatesTags: ['Cars']
-        // }),
-
-        // updateCar : builder.mutation({
-        //     query: ({ carId , payload } : { carId: string, payload:TCar}) => ({
+        updateUser : builder.mutation({
+            query: ({ userId , payload } : { userId: string, payload:Partial<TUser>}) => ({
                 
-        //         url : `/api/cars/${carId}`,
-        //         method : "PUT", 
-        //         body : payload,  
-        //     }),
-        //     invalidatesTags: ['Cars','Single-car' ]
-        // }),
+                url : `/api/users/${userId}`,
+                method : "PUT", 
+                body : payload,  
+            }),
+            invalidatesTags: ['Single-user', 'Users' ]
+        }),
     })
 })
 
 export const {
-useGetSingleUserQuery, useGetUsersQuery
+useGetSingleUserQuery, useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation
     } = userApi;

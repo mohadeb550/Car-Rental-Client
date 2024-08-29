@@ -1,4 +1,4 @@
-import Banner from "../components/ui/Home/Banner";
+import Banner from "../components/ui/Home/Banner/Banner";
 import BestSellingProducts from "../components/ui/Home/BestSellingProducts";
 import FaqSection from "../components/ui/Home/FAQsection/FaqSection";
 import FeaturedCars from "../components/ui/Home/FeaturedCars";

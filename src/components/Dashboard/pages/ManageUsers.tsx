@@ -4,21 +4,25 @@ import Swal from "sweetalert2";
 import CreateCarModal, { TCar } from "../components/Modal/CreateCarModal";
 import UpdateCarModal from "../components/Modal/UpdateCarModal";
 import { useDeleteCarMutation, useGetCarsQuery } from "../../../redux/features/car/carApi";
+import { useDeleteUserMutation, useGetUsersQuery } from "../../../redux/features/user/userApi";
+import { TUser } from "../../../redux/features/authentication/authSlice";
+import { MdModeEdit } from "react-icons/md";
+import UpdateUserModal from "../components/Modal/UpdateUserModal";
 
 
-export default function ManageCars() {
+export default function ManageUsers() {
 
     const [openCreateModal, setOpenCreateModal ] = useState<boolean>(false);
     const [openUpdateModal, setOpenUpdateModal ] = useState<boolean>(false);
-    const { data, isLoading } = useGetCarsQuery(undefined);
-    const [ deleteCarFromDB ] = useDeleteCarMutation();
-    const [updateProductId, setUpdateProductId ] = useState('')
+    const { data, isLoading } = useGetUsersQuery(undefined);
+    const [ deleteUserFromDB ] = useDeleteUserMutation()
+    const [updateUserEmail, setUpdateUserEmail ] = useState('')
 
-    const cars: TCar[] = data?.data || []
+    const users: TUser[] = data?.data || []
 
 
     // delete a product 
-    const deleteProduct = (carId: string) => {
+    const deleteUser = (userId: string) => {
     Swal.fire({
   title: "Are you sure?",
   text: "You won't be able to revert this!",
@@ -30,11 +34,11 @@ export default function ManageCars() {
 
 }).then( async (result) => {
   if (result.isConfirmed) {
-   const response = await deleteCarFromDB(carId).unwrap()
+   const response = await deleteUserFromDB(userId).unwrap()
    if(response.success){
     Swal.fire({
       title: "Deleted!",
-      text: "Car has been deleted.",
+      text: "User has been deleted.",
       icon: "success"
     });
    }
@@ -48,21 +52,16 @@ export default function ManageCars() {
 
 
    <div className="flex justify-center items-center mb-3">
-   <h2 className="text-2xl md:text-4xl carter-one-regular text-zinc-300 ">ALL CARS</h2>
+   <h2 className="text-2xl md:text-4xl carter-one-regular text-zinc-300 ">ALL Users</h2>
    </div>
 
    <div className="text-right mb-7">
-   <button 
-   onClick={() => setOpenCreateModal(true)}
-    className=" px-6 text-sm lg:text-base mr-3 py-2 md:py-2 xl:py-3 font-semibold text-gray-900 rounded transition bg-zinc-200 hover:bg-gray-200 whitespace-nowrap">Add New Product</button>
+  
 
-
-   {/* create product modal  */}
-   {openCreateModal && <CreateCarModal open={openCreateModal} setOpen={setOpenCreateModal}/>}
 
 
    {/* update product modal  */}
-   {openUpdateModal && <UpdateCarModal carId={updateProductId} open={openUpdateModal} setOpen={setOpenUpdateModal}/>}
+   {openUpdateModal && <UpdateUserModal userEmail={updateUserEmail} open={openUpdateModal} setOpen={setOpenUpdateModal}/>}
     
    </div>
 
@@ -88,12 +87,12 @@ export default function ManageCars() {
               <th
                 scope="col"
                 className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600">
-              Car Type
+            Email
               </th>
               <th
                 scope="col"
                 className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600">
-            Price(1H)
+           Role
               </th>
               <th
                 scope="col"
@@ -104,7 +103,7 @@ export default function ManageCars() {
               
               <th scope="col" className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600"> Action </th>
             
-              <th scope="col" className=" px-6 py-0 md:py-2 lg:py-4  rounded-r-2xl"> Action </th>
+             
             </tr>
           </thead>
           <tbody className="relative">
@@ -117,39 +116,36 @@ export default function ManageCars() {
            aria-label="Loading Spinner"
            speedMultiplier={0.8} />}
           
-          {cars?.map(car =>  <tr key={car._id} className="border-b ">
+          {users?.map(user =>  <tr key={user._id} className="border-b ">
               <td
                 className="whitespace-nowrap border-r px-6 py-4 font-medium border-zinc-500 flex items-center justify-center">
-                <img src={car.images[0]} className="w-[52px] h-[52px] md:w-20 md:h-20 object-contain rounded-full" />
+                <img src={user.image} className="w-[52px] h-[52px] md:w-16 md:h-16 object-contain rounded-3xl" />
               </td>
               <td
                 className=" border-r font-medium text-sm md:text-lg  text-zinc-400 text-start md:text-center px-6 py-4 border-zinc-500">
-                {car.name}
+                {user.name}
               </td>
 
               <td
                 className=" border-r font-medium text-sm md:text-lg  text-zinc-400 text-start md:text-center px-6 py-4 border-zinc-500">
-                {car.carType}
+                {user.email}
               </td>
 
               <td
                 className="whitespace-nowrap font-medium text-lime-500 text-sm md:text-lg border-r px-6 py-4 border-zinc-500">
-                {car.pricePerHour}$
+                {user.role}
               </td>
-              <td
-                className="whitespace-nowrap font-medium text-zinc-400 text-sm md:text-lg border-r px-6 py-4 border-zinc-500">
-                {car.status}
-              </td>
+             
               
               
               <td className="whitespace-nowrap font-medium border-r text-sm md:text-lg  px-6 py-4 border-zinc-500">
              
-             <button className={`bg-blue-700 p-1 px-2 md:py-2 md:px-4 text-white rounded font-semibold transition-all hover:bg-blue-800 text-[12px] md:text-base `}
+              <button className={`bg-blue-600 p-1 px-2 md:py-2 md:px-4 text-white rounded font-semibold transition-all hover:bg-blue-700 text-[12px] md:text-base `}
              onClick={() => {
-              setUpdateProductId(car._id!)
+              setUpdateUserEmail(user.email!)
               setOpenUpdateModal(true)
               }} > 
-             Modify</button>
+            <MdModeEdit/></button>
     
                </td>
 
@@ -157,7 +153,7 @@ export default function ManageCars() {
 
              {/* delete product  */}
              <button className={`bg-red-600 p-1 px-2 md:py-2 md:px-4 text-white rounded font-semibold transition-all hover:bg-red-700 text-[12px] md:text-base `}
-             onClick={() => deleteProduct(car._id!)} > 
+             onClick={() => deleteUser(user._id!)} > 
              Delete </button>
     
                </td>
@@ -166,7 +162,7 @@ export default function ManageCars() {
          
           </tbody>
         </table>
-        {!cars?.length && <p className="text-xl text-center mt-44 text-gray-500"> No Cars </p>}
+        {!users?.length && <p className="text-xl text-center mt-44 text-gray-500"> No Users </p>}
       </div>
     </div>
   </div>

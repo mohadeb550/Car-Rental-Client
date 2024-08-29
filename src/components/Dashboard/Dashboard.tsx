@@ -15,7 +15,7 @@ const Dashboard = () => {
   <div className="drawer-content flex flex-col ">
 
     {/* Page content here */}
-   <section className="max-w-[1500px] mt-14 ">
+   <section className="max-w-[1500px] mt-10 ">
    <Outlet/>
    {/* <Toaster/> */}
    </section>

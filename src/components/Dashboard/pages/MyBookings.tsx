@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import UpdateBookingModal from "../components/Modal/UpdateBookingModal";
 import { BsArrowUpRightSquareFill } from "react-icons/bs";
 import PaymentModal from "../components/Modal/PaymentModal";
+import { SiPayoneer } from "react-icons/si";
 
 export default function MyBooking(){
 
@@ -175,6 +176,17 @@ const formattedTime = `${hours}:${minutes}`;
 onClick={() => {sendReturnReq(booking._id!)}} >  <BsArrowUpRightSquareFill/> </button> }
 
               </td> : <> <span> </span></>}
+
+
+              {booking.status === 'completed'?  <td
+                className="whitespace-nowrap font-medium text-zinc-400 text-sm  border-r px-6 py-4 border-zinc-500"> 
+
+      <button className={` text-blue-500 hover:text-blue-600 flex items-center gap-1 rounded carter-one-regular transition-all md:text-xl `}
+        onClick={() => {setUpdateBookingId(booking._id!); setOpenPayModal(true)}} >  <SiPayoneer/> PAY</button>
+
+              </td> : <> <span> </span></>}
+
+
               
               
           {booking.status === 'pending'? <>   <td className="whitespace-nowrap font-medium  text-sm md:text-lg  px-6 py-4 border border-zinc-400">

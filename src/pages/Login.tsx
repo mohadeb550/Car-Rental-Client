@@ -49,7 +49,7 @@ export default function Login() {
     }
 
   return(
-    <div className="hero h-[600px] pb-32 md:pb-0 md:h-[600px] px-4 bg-[#1F1F22]">
+    <div className="hero h-[600px] pb-32 md:pb-0 md:h-[600px] px-4 ">
 
     <div className="hero-content flex-col w-full">
 

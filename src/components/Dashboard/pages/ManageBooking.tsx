@@ -148,16 +148,16 @@ export default function ManageBooking() {
            aria-label="Loading Spinner"
            speedMultiplier={0.8} />}
           
-          {bookings?.map(booking =>  <tr key={booking._id} className={`border-b ${booking.isReturnProcess? 'bg-amber-400/10 group relative': ''}`}>
+          {bookings?.map(booking =>  <tr key={booking._id} className={`border-b ${booking.isReturnProcess? 'bg-amber-400/10 relative hover:bg-transparent': ''}`}>
 
               {/* for confirming the return request  */}
-            <div className="hidden bg-black/60 absolute w-full h-full group-hover:flex items-center">
+            {booking.isReturnProcess && <div className=" absolute hover:hidden transition bg-black/50 w-full h-full flex items-center">
            
-            <button className={`bg-lime-600 hover:bg-lime-700 text-white rounded font-semibold transition-all  px-3 py-1 ml-56`}
-             onClick={() => confirmReturnBooking(booking._id!)} > 
-            Approve Return</button>
-  
-            </div>
+           <button className={`bg-lime-600 hover:bg-lime-700 text-white rounded font-semibold transition-all  px-3 py-1 ml-56`}
+            onClick={() => confirmReturnBooking(booking._id!)} > 
+           Approve Return</button>
+ 
+           </div>}
 
               <td
                 className="whitespace-nowrap border-r px-6 py-4 font-medium border-zinc-500 flex items-center justify-center">

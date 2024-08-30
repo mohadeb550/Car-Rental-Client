@@ -105,7 +105,7 @@ const AdminOverview = () => {
           className="mx-auto mb-4 w-16 h-16 md:w-24 md:h-24"
         />
         <div className="text-4xl text-amber-500 md:text-6xl font-bold  mb-2 md:mb-4">
-          ${statistics.totalRevenue}
+          ${statistics.totalRevenue?.toFixed(1)}
         </div>
         <div className="text-lg md:text-xl text-gray-400 font-semibold">Total Revenue</div>
       </div>

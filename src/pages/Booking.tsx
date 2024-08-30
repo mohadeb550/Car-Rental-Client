@@ -28,6 +28,7 @@ export type TBooking = {
     totalCost? : number;
     createdAt? : string,
     updatedAt? : string,
+    isPaid? : boolean,
 }
 
 

@@ -11,7 +11,7 @@ function FeaturedCars() {
 
   return (
    <Container>
-     <div className={`my-14`}>
+     <div className={`mb-14 mt-24 md:mt-8 lg:mt-14`}>
     <h1 className="text-zinc-400 text-center text-3xl lg:text-5xl carter-one-regular my-2">Featured Cars</h1>
      <p className="text-center text-sm md:text-lg max-w-[1040px] mx-auto text-zinc-400 mt-0 md:mt-2 mb-10 md:mb-16 lg:mb-20 font-play" >Experience the extraordinary with our range of signature products.  promising.</p>
 

@@ -181,8 +181,8 @@ onClick={() => {sendReturnReq(booking._id!)}} >  <BsArrowUpRightSquareFill/> </b
               {booking.status === 'completed'?  <td
                 className="whitespace-nowrap font-medium text-zinc-400 text-sm  border-r px-6 py-4 border-zinc-500"> 
 
-      <button className={` text-blue-500 hover:text-blue-600 flex items-center gap-1 rounded carter-one-regular transition-all md:text-xl `}
-        onClick={() => {setUpdateBookingId(booking._id!); setOpenPayModal(true)}} >  <SiPayoneer/> PAY</button>
+                {booking.isPaid? <span className="text-lg text-purple-500">Paid</span> : <button className={` text-blue-500 hover:text-blue-600 flex items-center gap-1 rounded carter-one-regular transition-all md:text-xl `}
+        onClick={() => {setUpdateBookingId(booking._id!); setOpenPayModal(true)}} >  <SiPayoneer/> PAY</button>}
 
               </td> : <> <span> </span></>}
 

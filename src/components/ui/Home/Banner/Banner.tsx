@@ -18,7 +18,7 @@ export default function Banner() {
     return (
       <section className="gradient-background">
       <Container>
-          <div  className="hero h-[630px] md:h-[420px] lg:h-[550px] xl:h-[600px] pt-7 lg:pt-10 xl:pt-12 mb-3 md:mb-8 font-play flex flex-col-reverse  md:flex-row justify-around items-start md:pb-12 gap-3 md:gap-0" >
+          <div  className="hero h-[590px] md:h-[420px] lg:h-[550px] xl:h-[600px] pt-7 lg:pt-10 xl:pt-12 mb-3 md:mb-8 font-play flex flex-col-reverse  md:flex-row justify-around items-start md:pb-12 gap-3 md:gap-0" >
 
 <div className=" text-left text-neutral-content flex-1">
   <div className="max-w-4xl space-y-4 md:space-y-6 xl:space-y-10">
@@ -53,8 +53,8 @@ export default function Banner() {
      {searchValue && <SearchResultBox searchedCars={searchedCars} />}
   </div>
 
-  <Link to={'/products'}>
-        <button className="px-6 lg:px-8 text-sm lg:text-base  py-2 md:py-2 xl:py-3 whitespace-nowrap inter-medium text-white rounded transition bg-amber-600 hover:bg-amber-700 flex items-center gap-2">Book Now  <span className="text-xl"><GoArrowUpRight/></span></button></Link>
+  <Link to={'/cars'}>
+        <button className=" px-4 md:px-3 lg:px-8 text-sm lg:text-base  py-2 md:py-2 xl:py-3 whitespace-nowrap inter-medium text-white rounded transition bg-amber-600 hover:bg-amber-700 flex items-center gap-2">Book Now  <span className="text-xl"><GoArrowUpRight/></span></button></Link>
     </section>
 
 
@@ -68,24 +68,24 @@ export default function Banner() {
 
 <div className="flex-1 h-full w-full pt-7 md:pt-2 xl:pt-4">
 
-<div className="flex items-center justify-center gap-6 lg:gap-16 xl:gap-20 ">
+<div className="flex items-center justify-center gap-6 lg:gap-16 xl:gap-20 mb-5 md:mb-2 xl:mb-4">
 
 {/* badge  */}
 
 <div className="space-y-1 md:space-y-2 xl:space-y-4">
-<h1 className={`text-xl md:text-[22px] lg:text-3xl xl:text-[52px] pb-1 lg:pb-2 xl:pb-4 border-b-2 md:border-b-4 border-zinc-600 font-semibold text-zinc-400 `}> <CountUp end={10} duration={6} /> <span className="">+</span> </h1>
-<p className={`text-sm  text-zinc-500 `}>Years Experience</p>
+<h1 className={`text-3xl lg:text-4xl xl:text-5xl pb-1 lg:pb-2 xl:pb-4 border-b-2 md:border-b-4 border-zinc-600 font-semibold text-zinc-400 carter-one-regular`}> <CountUp end={10} duration={6} /> <span className="">+</span> </h1>
+<p className={`text-sm  text-zinc-400 `}>Years Experience</p>
 </div>
 
 <div className="space-y-1 md:space-y-2 xl:space-y-4">
-<h1 className={`text-xl md:text-[22px] lg:text-3xl xl:text-[52px] pb-1 lg:pb-2 xl:pb-4 border-b-2 md:border-b-4 border-zinc-600 font-semibold text-zinc-400`}> <CountUp end={75} duration={6} /><span className="">+</span> </h1>
-<p className={`text-sm text-zinc-500`}>Happy
+<h1 className={`text-3xl lg:text-4xl xl:text-5xl pb-1 lg:pb-2 xl:pb-4 border-b-2 md:border-b-4 border-zinc-600 font-semibold text-zinc-400 carter-one-regular`}> <CountUp end={75} duration={6} /><span className="">+</span> </h1>
+<p className={`text-sm text-zinc-400`}>Happy
 Clients</p>
 
 </div>
 <div className="space-y-1 md:space-y-2 xl:space-y-4">
-<h1 className={`text-xl md:text-[22px] lg:text-3xl xl:text-[52px] pb-1 lg:pb-2 xl:pb-4 border-b-2 md:border-b-4 border-zinc-600 font-semibold text-zinc-400 `}> <CountUp end={45} duration={6} /><span className="">+</span> </h1>
-<p className={`text-sm  text-zinc-500 `}>Award
+<h1 className={`text-3xl lg:text-4xl xl:text-5xl pb-1 lg:pb-2 xl:pb-4 border-b-2 md:border-b-4 border-zinc-600 font-semibold text-zinc-400 carter-one-regular`}> <CountUp end={45} duration={6} /><span className="">+</span> </h1>
+<p className={`text-sm  text-zinc-400 `}>Award
 Winning</p>
 </div>
 </div>

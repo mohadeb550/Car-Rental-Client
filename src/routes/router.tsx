@@ -21,6 +21,7 @@ import ErrorPage from "../pages/ErrorPage";
 import AdminOverview from "../components/Dashboard/pages/AdminOverview";
 import UserProtected from "./UserProtected";
 import AdminProtected from "./AdminProtected";
+import LoginProtected from "./LoginProtected";
 
 
 export const router = createBrowserRouter([
@@ -42,7 +43,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/booking/:carId',
-                element: <UserProtected> <Booking/> </UserProtected>
+                element: <LoginProtected> <Booking/> </LoginProtected>
+                    
+                    
             },
             {
                 path: '/cars',

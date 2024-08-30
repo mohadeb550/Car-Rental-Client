@@ -6,12 +6,14 @@ import { useAppSelector } from "../../redux/hooks";
 import { ClipLoader } from "react-spinners";
 import { useSavePaymentMutation } from "../../redux/features/payment/paymentApi";
 import { toast } from "sonner";
+import { useUpdateBookingMutation } from "../../redux/features/booking/bookingApi";
 
 
 
 export default function CheckoutForm({booking, setOpen } : { booking : TBooking}) {
   const { _id, totalCost, car  } = booking || {};
   const [ savePayment ] = useSavePaymentMutation();
+  const [ updateBooking ] = useUpdateBookingMutation()
 
     const currentUser = useAppSelector(state => state.auth.user);
     const [ loading , setLoading ] = useState(false);
@@ -42,64 +44,70 @@ export default function CheckoutForm({booking, setOpen } : { booking : TBooking}
         e.preventDefault();
         setLoading(true)
 
-        // if(!stripe || !elements){
-        //   setLoading(false)
-        //     return;
-        // }
+        if(!stripe || !elements){
+          setLoading(false)
+            return;
+        }
         
-        // // get input field value from CardElement , this is internal mechanism
-        // const card = elements.getElement(CardElement);
+        // get input field value from CardElement , this is internal mechanism
+        const card = elements.getElement(CardElement);
 
-        // if(card === null){
-        //   setLoading(false)
-        //     return;
-        // }
+        if(card === null){
+          setLoading(false)
+            return;
+        }
 
-        // const { paymentMethod, error } = await stripe.createPaymentMethod({ type: 'card', card })
+        const { paymentMethod, error } = await stripe.createPaymentMethod({ type: 'card', card })
 
-        // if(error){
-        //   setLoading(false)
-        //     console.log(error)
-        // }else{ console.log( 'payment method', paymentMethod)}
+        if(error){
+          setLoading(false)
+            console.log(error)
+        }else{ console.log( 'payment method', paymentMethod)}
 
-        // const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment( clientSecret, {
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment( clientSecret, {
 
-        //    payment_method : {
-        //         card : card,
-        //         billing_details: {
-        //             name: currentUser?.name,
-        //             email: currentUser?.email
-        //         }
-        //    }
-        // })
+           payment_method : {
+                card : card,
+                billing_details: {
+                    name: currentUser?.name,
+                    email: currentUser?.email
+                }
+           }
+        })
 
-        // if(confirmError){
-        //     console.log(confirmError)
-        //     setLoading(false)
-        // }
+        if(confirmError){
+            console.log(confirmError)
+            setLoading(false)
+        }
         
-        // if(paymentIntent?.status === 'succeeded'){
+        if(paymentIntent?.status === 'succeeded'){
 
-        //       // now save the payment in database 
-        //       const payment = {
-        //         email: currentUser?.email,
-        //         cost: parseInt(totalCost),
-        //         bookingId : _id,
-        //         transactionId : paymentIntent.id,
-        //         date : new Date(),
-        //       }
+              // now save the payment in database 
+              const payment = {
+                email: currentUser?.email,
+                cost: parseInt(totalCost),
+                bookingId : _id,
+                transactionId : paymentIntent.id,
+                date : new Date(),
+              }
   
-        //      const res = await savePayment(payment);
-        //      console.log(res)
-        //     if(res.data?.success){
-        //       toast.success('Payment Successful') 
-        //       setLoading(false)
-        //       setOpen(false)
-        //     }
-        //     else{
-        //       toast.error('something wrong')
-        //     }
-        // }
+             const res = await savePayment(payment);
+          
+            if(res.data?.success){
+
+              await updateBooking({
+                bookingId :_id!,
+                payload : { isPaid : true},
+              }).unwrap();
+
+              toast.success('Payment Successful') 
+              setLoading(false)
+              setOpen(false)
+            }
+            else{
+              toast.error('something wrong')
+            }
+        }
     }
 
   return ( 

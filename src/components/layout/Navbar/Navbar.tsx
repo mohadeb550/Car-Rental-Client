@@ -25,12 +25,13 @@ const logoutUser = () => {
    
    <li ><NavLink to='/cars' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Cars</NavLink></li>
 
-   <li ><NavLink to='/cart' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Cart</NavLink></li>
 
-   <li ><NavLink to='/dashboard' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Dashboard</NavLink></li>
+   {user &&    <li ><NavLink to={user.role === 'user'? '/dashboard/user-overview' : '/dashboard/admin-overview' } className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Dashboard</NavLink></li>}
 
 
    <li ><NavLink to='/about-us' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >About Us</NavLink></li>
+
+   <li ><NavLink to='/sign-up' className={`cursor-pointer inter-thin text-[15[px]]  px-4 py-[3px] text-gray-300  transition hover:text-gray-400 border-b-gray-400`} >Sign Up</NavLink></li>
 
   
    

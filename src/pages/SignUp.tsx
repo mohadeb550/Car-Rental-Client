@@ -40,7 +40,7 @@ export default function SignUp() {
 
 
   return (
-    <div className="hero h-[700px] md:h-[750px] px-4 bg-[#1F1F22]">
+    <div className="hero h-[700px] md:h-[750px] px-4 ">
     <div className="hero-content flex-col w-full gap-0">
 
     <div className="text-center lg:text-left pt-5 rounded-l-lg">

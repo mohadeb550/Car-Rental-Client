@@ -56,7 +56,16 @@ const bookingApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['Single-booking', 'Bookings', 'Cars']
         }),
+
+         // only for admin 
+         getStatistics : builder.query({
+            query: () => ({
+                url : '/api/bookings/statistics',
+                method : "GET",  
+            }),
+            providesTags: ['Statistics']
+        }),
     })
 })
 
-export const { useCreateBookingMutation, useGetBookingsQuery, useGetSingleBookingQuery, useGetUserBookingsQuery, useUpdateBookingMutation , useCancelBookingMutation} = bookingApi;
+export const { useCreateBookingMutation, useGetBookingsQuery, useGetSingleBookingQuery, useGetUserBookingsQuery, useUpdateBookingMutation , useCancelBookingMutation, useGetStatisticsQuery} = bookingApi;

@@ -18,6 +18,7 @@ import ManageReturnCars from "../components/Dashboard/pages/ManageReturnCars";
 import ManageUsers from "../components/Dashboard/pages/ManageUsers";
 import UserOverview from "../components/Dashboard/pages/UserOverview";
 import ErrorPage from "../pages/ErrorPage";
+import AdminOverview from "../components/Dashboard/pages/AdminOverview";
 
 
 export const router = createBrowserRouter([
@@ -78,5 +79,6 @@ export const router = createBrowserRouter([
         {path: "manage-return-cars", element: <ManageReturnCars/> },
         {path: "manage-users", element: <ManageUsers/> },
         {path: "user-overview", element: <UserOverview/> },
+        {path: "admin-overview", element: <AdminOverview/> },
     ]},
 ])

@@ -4,30 +4,32 @@ import { GoArrowUpRight } from "react-icons/go";
 import { MdPlayCircle } from "react-icons/md";
 import CountUp from 'react-countup';
 import SearchResultBox from "./SearchResultBox";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useGetCarsQuery } from "../../../../redux/features/car/carApi";
 import { TCar } from "../../../Dashboard/components/Modal/CreateCarModal";
+import { ThemeContext } from "../../../root/Root";
 
 
 export default function Banner() {
   const [ searchValue, setSearchValue] = useState('');
+  const isDark = useContext(ThemeContext);
   const { data , isFetching } = useGetCarsQuery({ status : 'available' , location : searchValue});
   const searchedCars : TCar[] = data?.data || [];
 
   
     return (
-      <section className="gradient-background">
+      <section className={isDark? "gradient-background" : "bg-white"}>
       <Container>
           <div  className="hero h-[590px] md:h-[420px] lg:h-[550px] xl:h-[600px] pt-7 lg:pt-10 xl:pt-12 mb-3 md:mb-8 font-play flex flex-col-reverse  md:flex-row justify-around items-start md:pb-12 gap-3 md:gap-0" >
 
 <div className=" text-left text-neutral-content flex-1">
   <div className="max-w-4xl space-y-4 md:space-y-6 xl:space-y-10">
 
-  <p className="text-sm md:text-base lg:text-lg lg:font-medium text-zinc-300">------- Discover our wide range of campers </p>
-    <h1 className="hidden md:block text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-zinc-300 carter-one-regular">Rent Car In <br/>Worldwide</h1>
+  <p className={`text-sm md:text-base lg:text-lg lg:font-medium  ${isDark? 'text-zinc-300': 'text-zinc-700'}`}>------- Discover our wide range of campers </p>
+    <h1 className={`hidden md:block text-4xl md:text-6xl lg:text-7xl xl:text-8xl  carter-one-regular ${isDark? 'text-zinc-300': "text-amber-500"}`}>Rent Car In <br/>Worldwide</h1>
 
     <h1 className="md:hidden text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-zinc-300  carter-one-regular">Rent Car In Worldwide</h1>
-    <p className="text-sm md:text-base lg:text-lg lg:font-medium text-zinc-400"> Discover our wide range of campers and RVs perfect for your next adventure. Start your journey today!</p>
+    <p className={`text-sm md:text-base lg:text-lg lg:font-medium ${isDark? 'text-zinc-400': 'text-zinc-600'}`}> Discover our wide range of campers and RVs perfect for your next adventure. Start your journey today!</p>
 
 
       {/* search funciton  */}

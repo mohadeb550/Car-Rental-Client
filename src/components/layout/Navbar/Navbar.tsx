@@ -7,9 +7,11 @@ import Container from "../Container";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { toast } from "sonner";
 import { logout } from "../../../redux/features/authentication/authSlice";
+import { MdDarkMode } from "react-icons/md";
+import { MdBrightness5 } from "react-icons/md";
 
 
-export default function Navbar() {
+export default function Navbar({ isDark, setDark }) {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.auth.user)
   const navigate = useNavigate()
@@ -42,10 +44,10 @@ const logoutUser = () => {
     {/* <DrawerNav/> */}
 
    <Headroom> 
-  <div className={` bg-[#000209]`} >
+  <div className={`${isDark? ' bg-[#000209]' : 'bg-gray-50'}`} >
   <Container>
 
-<section className={`flex justify-between md:pt-2  h-16 md:h-[90px] bg-[#000209] `}>
+<section className={`flex justify-between md:pt-2  h-16 md:h-[90px]  ${isDark? 'bg-[#000209]': 'bg-gray-50'}`}>
 
 {/* logo section  */}
 <div className="flex items-center gap-1" >
@@ -66,8 +68,8 @@ const logoutUser = () => {
 {/* cart  */}  
 <div className="mr-3 md:mr-5 rounded-full text-xl md:text-[22px] lg:text-2xl text-black flex gap-5 md:gap-6 items-center">
 
-    <HiMagnifyingGlass  className="text-gray-300"/>
- 
+  <span>  <HiMagnifyingGlass  className="text-gray-300"/></span>
+    {isDark?  <span onClick={()=> setDark(!isDark)}> <MdBrightness5  className="text-gray-300 cursor-pointer"/></span> : <span onClick={()=> setDark(!isDark)}> <MdDarkMode  className="text-gray-300 cursor-pointer"/></span>}
 
 
     <div className="dropdown dropdown-end flex items-center justify-center gap-2 z-50">

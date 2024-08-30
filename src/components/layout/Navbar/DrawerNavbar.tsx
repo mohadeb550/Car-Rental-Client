@@ -3,6 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../../redux/hooks";
 
+
 const DrawerNav = () => {
   const user = useAppSelector(state => state.auth.user)
 

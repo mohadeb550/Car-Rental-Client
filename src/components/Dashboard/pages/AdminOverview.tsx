@@ -112,7 +112,7 @@ const AdminOverview = () => {
     </div>
     <div className="mt-8">
     <h2 className="text-3xl lg:text-4xl carter-one-regular text-center my-10 text-gray-300 ">Statistic Graph</h2>
-      <div className="card shadow-lg p-4 md:p-6 bg-[#171A21]">
+      <div className="card shadow-lg p-4 md:p-6 bg-[#171A21] rounded-xl">
         <Bar data={data} options={options} />
       </div>
     </div>

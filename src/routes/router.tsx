@@ -19,6 +19,8 @@ import ManageUsers from "../components/Dashboard/pages/ManageUsers";
 import UserOverview from "../components/Dashboard/pages/UserOverview";
 import ErrorPage from "../pages/ErrorPage";
 import AdminOverview from "../components/Dashboard/pages/AdminOverview";
+import UserProtected from "./UserProtected";
+import AdminProtected from "./AdminProtected";
 
 
 export const router = createBrowserRouter([
@@ -40,16 +42,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/booking/:carId',
-                element: <Booking/>
+                element: <UserProtected> <Booking/> </UserProtected>
             },
             {
                 path: '/cars',
                 element: <Cars/>
             },
-            // {
-            //     path: '/checkout',
-            //     element: <Checkout/>
-            // },
             {
                 path: '/order-successful',
                 element: <OrderSuccessPage/>
@@ -73,12 +71,15 @@ export const router = createBrowserRouter([
 
     {path: "/dashboard", element:  <Dashboard/>, children: [
 
-        {path: "manage-cars", element: <ManageCars/> },
-        {path: "manage-bookings", element: <ManageBooking/> },
-        {path: "my-bookings", element: <MyBooking/> },
-        {path: "manage-return-cars", element: <ManageReturnCars/> },
-        {path: "manage-users", element: <ManageUsers/> },
-        {path: "user-overview", element: <UserOverview/> },
-        {path: "admin-overview", element: <AdminOverview/> },
+        // for admin
+        {path: "manage-cars", element: <AdminProtected> <ManageCars/></AdminProtected> },
+        {path: "manage-bookings", element: <AdminProtected> <ManageBooking/></AdminProtected> },
+        {path: "manage-return-cars", element: <AdminProtected> <ManageReturnCars/></AdminProtected> },
+        {path: "manage-users", element: <AdminProtected> <ManageUsers/></AdminProtected> },
+        {path: "admin-overview", element: <AdminProtected> <AdminOverview/></AdminProtected> },
+
+// for user 
+        {path: "my-bookings", element: <UserProtected>  <MyBooking/></UserProtected> },
+        {path: "user-overview", element: <UserProtected>  <UserOverview/> </UserProtected>},
     ]},
 ])

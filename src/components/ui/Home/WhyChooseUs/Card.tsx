@@ -1,5 +1,6 @@
 
-const Card = ({service }) => {
+const Card = ({service } : { service :  { id: number, title : string, description: string, logo: string }}) => {
+    
     const darkMode = true;
 
     const { title, id, description, logo} = service;

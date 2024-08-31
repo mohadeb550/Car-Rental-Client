@@ -1,37 +1,49 @@
 
-PROJECT NAME : Camper Haven
-LIVE SERVER  : https://campers-shop-six.vercel.app
+PROJECT NAME : ZipCar
+LIVE SERVER  : https://car-rental-frontend-hazel.vercel.app
 
-This is a camping products site where users can get necessary all the products for camping.
+This is a car rental site where users can rent and return cars easily.
 
-What users can do (as of now) : 
--  user can create a product, update, delete from the Product Management page.
--  user can see the products by filtering price, category and get specific products by searching
--  user can view the full details of the products clicking SEE DETAILS button.
--  user can add a product to the cart from Product Details page.
--  user can place a order for all the products in the cart.
--  user needs to give their information for placing a new order from the Checkout page.
+- Summary of this project.
+First of all, a user will sign up and login to this site then user can perform booking a car and everything. After booking a car, by default the booking is pending then checking the info, if the booking info is okay, admin will approve the booking and once the booking is approved for rent, user cannot modify the booking. The cost calculation is counted from the time given by the user. To return the car to the admin user need to send a request to the admin and after returning, user can pay the total cost. Once admin approves the return request of the user, the process will be completed and you can explore the rest of the features of this site.
+
+
+What users can do : 
+-  user can sign up and login by giving information and update their data from Profile.
+-  user can see available cars from the banner by giving location.
+-  user can book a car and after booking user can cancel and modify the booking if the booking is pending.
+- from cars page user can filter the cars by using some fields.
+- after returning the car user can pay the cost.
+
+
+What admin can do : 
+-  admin also can sign up and login.
+-  admin can manage all the things from dashboard.
+-  admin can manage cars, bookings, return cars and users.
+-  admin can see the statistics from the overview page in the dashboard.
 
 
 Features : 
-- RTK Query has been used.
-- Pixel Perfect Responsive has been done.
-- Error handing has been done.
+- Has a secure authentication with JWT.
+- Has a role based dashboard.
+- Main routes have been protected.
+- Pixel Perfect Responsive.
+- Error handing and UX focus.
 
 
 How to run the project locally?
 
 - Install all the dependencies by this command 'npm install'.
-- Replace the 'baseApi' in 'baseApi.ts' file by the backend URL.
-- You will need the backend server and you can get it from my repository named "camper-haven-backend"
-- To build the project use this "npm run build"
+- Replace the 'baseURL' in 'baseApi.ts' file with your the server URL.
+- Add an property named 'VITE_PAYMENT_KEY' in .env file for stripe payment secret. 
+- To build the project use this "npm run build" and run with 'npm run dev'
 
 The technologies and packages used in this project :  
 
-- HTML and Tailwind CSS
-- React and Redux Toolkit
+- Tailwind CSS
+- React, Redux Toolkit and redux-persist
 - Typescript
 - Daisy UI as Css framework
-- react-slick and @szhsin/react-accordion
+- react-slick and react-headroom
 - react-hook-form , react-router-dom
 - react-image-gallery , react-icons

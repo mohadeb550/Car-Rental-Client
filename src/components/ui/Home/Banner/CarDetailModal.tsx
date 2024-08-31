@@ -1,12 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
-import CountUp from "react-countup";
+
 import { TCar } from "../../../Dashboard/components/Modal/CreateCarModal";
 import { useGetSingleCarQuery } from "../../../../redux/features/car/carApi";
 import { ClipLoader } from "react-spinners";
 
+type TModalProps = {
+  setIsOpen : React.Dispatch<React.SetStateAction<boolean>>,
+  carId : string ,
+}
 
-export default function CarDetailModal ({ setIsOpen,  carId}) {
+
+export default function CarDetailModal ({ setIsOpen,  carId} : TModalProps) {
 
   const { data, isLoading: dataLoading } = useGetSingleCarQuery(carId);
   const car : TCar = data?.data;

@@ -11,7 +11,13 @@ import { MdDarkMode } from "react-icons/md";
 import { MdBrightness5 } from "react-icons/md";
 
 
-export default function Navbar({ isDark, setDark }) {
+type TModalProps = {
+  setDark : React.Dispatch<React.SetStateAction<boolean>>,
+  isDark : boolean ,
+}
+
+
+export default function Navbar({ isDark, setDark } : TModalProps) {
   const dispatch = useAppDispatch();
   const user = useAppSelector(state => state.auth.user)
   const navigate = useNavigate()

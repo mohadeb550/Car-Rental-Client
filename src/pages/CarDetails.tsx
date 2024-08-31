@@ -1,20 +1,15 @@
 
-
 import { Link, useParams } from "react-router-dom"
 import { IoMdAdd }  from 'react-icons/io'
 import { AiOutlineMinus }  from 'react-icons/ai'
-import { BsCart2, BsFacebook, BsLinkedin, BsTwitter }  from 'react-icons/bs'
+import { BsFacebook, BsLinkedin, BsTwitter }  from 'react-icons/bs'
 import { GiSelfLove }  from 'react-icons/gi'
-
 
 import ImageGallery from "react-image-gallery";
 import 'react-image-gallery/styles/css/image-gallery.css';
 
 import '../styles/imageGallery.css'
 import { ClipLoader } from "react-spinners"
-import { useAppDispatch } from "../redux/hooks"
-import { addProductToCart, TCartItem } from "../redux/features/cart/cartSlice"
-import { toast } from "sonner"
 import { TCar } from "../components/Dashboard/components/Modal/CreateCarModal"
 import { useGetSingleCarQuery } from "../redux/features/car/carApi"
 
@@ -42,7 +37,6 @@ import { useGetSingleCarQuery } from "../redux/features/car/carApi"
 export default function CarDetails() {
     const params = useParams();
     const { data, isLoading } = useGetSingleCarQuery(params.carId as string);
-    const dispatch = useAppDispatch() 
    const car : TCar = data?.data;
 
    if(isLoading ){return  <ClipLoader
@@ -53,7 +47,7 @@ export default function CarDetails() {
     speedMultiplier={0.8} />}
 
 
-   const {_id, name, images, pricePerHour, features, color, description, isElectric, status} = car;
+   const {_id, name, images, pricePerHour, color, description, status} = car;
 
 
 //    add item to cart 

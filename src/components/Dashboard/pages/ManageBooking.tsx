@@ -4,7 +4,6 @@ import { TBooking } from "../../../pages/Booking";
 
 import { useCancelBookingMutation, useGetBookingsQuery, useUpdateBookingMutation } from "../../../redux/features/booking/bookingApi";
 import { RiEditCircleLine } from "react-icons/ri";
-import { FcApprove } from "react-icons/fc";
 import { FcCancel } from "react-icons/fc";
 import { IoShieldCheckmarkSharp } from "react-icons/io5";
 import { toast } from "sonner";
@@ -151,7 +150,7 @@ export default function ManageBooking() {
           {bookings?.map(booking =>  <tr key={booking._id} className={`border-b ${booking.isReturnProcess? 'bg-amber-400/10 relative hover:bg-transparent': ''}`}>
 
               {/* for confirming the return request  */}
-            {booking.isReturnProcess && <div className=" absolute hover:hidden transition bg-black/50 w-full h-full flex items-center">
+            {booking.isReturnProcess && <div className=" absolute transition bg-black/50 w-full h-full flex items-center">
            
            <button className={`bg-lime-600 hover:bg-lime-700 text-white rounded font-semibold transition-all  px-3 py-1 ml-56`}
             onClick={() => confirmReturnBooking(booking._id!)} > 

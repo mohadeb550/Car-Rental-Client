@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../redux/features/authentication/authApi";
@@ -6,6 +7,7 @@ import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser } from "../redux/features/authentication/authSlice";
+import { TJwtDecoded } from "../routes/AdminProtected";
 
 
 export default function Login() {
@@ -16,14 +18,15 @@ export default function Login() {
   const dispatch = useAppDispatch();
 
 
-    const handleLogin = async (e) => {
+    const handleLogin = async (e: any) => {
         e.preventDefault();
 
         const form  = new FormData(e.target);
         const email = form.get('email')
         const password = form.get('password')
 
-        const res = await login({ email, password})
+
+        const res : any = await login({ email, password})
 
         if(res?.error?.data?.message === 'user not exist'){
           setErrors({...errors, emailError: 'Incorrect Email'})
@@ -35,7 +38,7 @@ export default function Login() {
         const userImage = res?.data?.data?.image;
         const name = res?.data?.data?.name;
         // decode the jwt token 
-        const decoded = jwtDecode(res.data.token);
+        const decoded : TJwtDecoded = jwtDecode(res.data.token);
         dispatch(setUser({
           user : { ...decoded, image : userImage, name },
           token : res.data.token

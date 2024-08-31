@@ -1,7 +1,5 @@
 
 import baseApi from "../../api/baseApi";
-import { TUser } from "../authentication/authSlice";
-
 
 const userApi = baseApi.injectEndpoints({
     endpoints : (builder) => ({

@@ -1,23 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { RiEditBoxLine } from "react-icons/ri";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import {  useAppSelector } from "../../../redux/hooks";
 import { useGetSingleUserQuery, useUpdateUserMutation } from "../../../redux/features/user/userApi";
-import { setUser, TUser } from "../../../redux/features/authentication/authSlice";
+import { TUser } from "../../../redux/features/authentication/authSlice";
 import { toast } from "sonner";
 import BookingHistory from "../components/BookingHistory";
+import { RootState } from "../../../redux/store";
 
 
 const UserOverview = () => {
 
     const [ open ,setOpen ] = useState(false);
-    const state = useAppSelector(state => state)
-    const { data, isLoading } = useGetSingleUserQuery(state?.auth?.user?.email )
+    const state = useAppSelector((state: RootState) => state)
+    const { data} = useGetSingleUserQuery(state.auth?.user?.email as string)
     const [ updateUser ] = useUpdateUserMutation();
-    const dispatch = useAppDispatch();
    
-    const user: TUser[] = data?.data || []
+    const user: TUser = data?.data || []
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e:any) => {
         e.preventDefault()
           const form = e.target;
         
@@ -28,12 +29,11 @@ const UserOverview = () => {
       }
 
       const res = await updateUser({
-        userId :  user?._id,
+        userId :  user?._id as string,
         payload : updatedInfo
       })
 
       if(res?.data?.success){
-        // dispatch(setUser({...state, user : {...state.auth.user, ...updatedInfo}}))
         toast.success('Updated Successfully')
         setOpen(false)
       }

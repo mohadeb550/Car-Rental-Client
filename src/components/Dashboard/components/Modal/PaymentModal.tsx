@@ -23,7 +23,7 @@ type TModalProps = {
 
 
 
-export default function  PaymentModal({ open, setOpen, bookingId} : TModalProps) {
+export default function  PaymentModal({ setOpen, bookingId} : TModalProps) {
 
   const { data, isLoading} = useGetSingleBookingQuery(bookingId);
   const booking : TBooking = data?.data;
@@ -66,7 +66,6 @@ export default function  PaymentModal({ open, setOpen, bookingId} : TModalProps)
         <CheckoutForm booking={booking} setOpen={setOpen} />
     </Elements>
     </section>
-
 
 
 </div>

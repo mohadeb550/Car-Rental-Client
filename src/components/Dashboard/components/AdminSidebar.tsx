@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FaHouse, FaUserLarge } from "react-icons/fa6";
+import { FaHouse } from "react-icons/fa6";
 import { FiUsers } from "react-icons/fi";
 import { FaCarAlt } from "react-icons/fa";
 import { VscTasklist } from "react-icons/vsc";

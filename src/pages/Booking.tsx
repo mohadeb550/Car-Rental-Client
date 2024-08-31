@@ -4,19 +4,19 @@ import { useForm } from 'react-hook-form';
 import Container from '../components/layout/Container';
 import {useParams } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
-import { useGetCarsQuery, useGetSingleCarQuery } from '../redux/features/car/carApi';
+import { useGetSingleCarQuery } from '../redux/features/car/carApi';
 import { TCar } from '../components/Dashboard/components/Modal/CreateCarModal';
-import CarCard from '../components/ui/CarsPage/CarCard';
 import { useAppSelector } from '../redux/hooks';
 import { useState } from 'react';
 import { useGetSingleUserQuery } from '../redux/features/user/userApi';
 import ConfirmBookingModal from '../components/ui/Modal/ConfirmBookingModal';
 import RelatedCars from '../components/ui/BookingPage/RelatedCars';
+import { TUser } from '../redux/features/authentication/authSlice';
 
 export type TBooking = {
     _id? : string;
     date : string;
-    user : object;
+    user : TUser;
     car : TCar;
     phone: string;
     location: string;
@@ -36,10 +36,8 @@ const Booking = () => {
     const { register, handleSubmit } = useForm();
     const params = useParams();
     const { data, isLoading } = useGetSingleCarQuery(params.carId as string);
-    const { data:cars  } = useGetCarsQuery({});
     const user = useAppSelector(state => state.auth.user);
-    const { data: singleUserData } = useGetSingleUserQuery(user.email );
-    const allCars : TCar[] = cars?.data || [];
+    const { data: singleUserData } = useGetSingleUserQuery(user?.email as string );
     const car : TCar = data?.data;
 
     // modal 
@@ -63,12 +61,6 @@ const Booking = () => {
         setBooking(bookingData);
         setOpenConfirmModal(true);
 
-    //   const response = await createProduct(orderData).unwrap();
-    //     if(response.success){
-    //          navigate('/order-successful')     
-    //     }else{
-    //         toast.error('Something went wrong')
-    //     }  
     }
 
 
@@ -85,7 +77,7 @@ const Booking = () => {
             </div>
 
                {/* open confirm booking modal  */}
-   {openConfirmModal && <ConfirmBookingModal open={openConfirmModal} setOpen={setOpenConfirmModal} booking={booking}/>}
+   {openConfirmModal && <ConfirmBookingModal open={openConfirmModal} setOpen={setOpenConfirmModal} booking={booking as TBooking}/>}
 
 
             <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch  w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">

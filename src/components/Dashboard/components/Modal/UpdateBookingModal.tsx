@@ -4,7 +4,6 @@ import {useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 import { toast } from "sonner";
 import { useEffect } from "react";
-import { TCar } from "./CreateCarModal";
 import { TBooking } from "../../../../pages/Booking";
 import { useGetSingleBookingQuery, useUpdateBookingMutation } from "../../../../redux/features/booking/bookingApi";
 
@@ -85,7 +84,7 @@ export default function UpdateBookingModal({ open, setOpen, bookingId} : TModalP
            speedMultiplier={0.8} />
       </div> : ""}
 
-      {/* car infro  */}
+      {/* car info  */}
       <section className="flex items-center gap-4">
         <img className="w-20 h-20 object-contain" src={booking?.car?.images[0]}/>
 

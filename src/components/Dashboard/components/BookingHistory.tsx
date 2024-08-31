@@ -4,7 +4,7 @@ import { useGetUserBookingsQuery } from "../../../redux/features/booking/booking
 
 
 const BookingHistory = () => {
-    const { data, isLoading: bookingsLoading } = useGetUserBookingsQuery(undefined);
+    const { data,} = useGetUserBookingsQuery(undefined);
 
 
     const bookings: TBooking[] = data?.data || []

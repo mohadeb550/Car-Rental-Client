@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Container from "../../../layout/Container";
 import { GoArrowUpRight } from "react-icons/go";
-import { MdPlayCircle } from "react-icons/md";
 import CountUp from 'react-countup';
 import SearchResultBox from "./SearchResultBox";
 import { useContext, useState } from "react";
@@ -13,7 +12,7 @@ import { ThemeContext } from "../../../root/Root";
 export default function Banner() {
   const [ searchValue, setSearchValue] = useState('');
   const isDark = useContext(ThemeContext);
-  const { data , isFetching } = useGetCarsQuery({ status : 'available' , location : searchValue});
+  const { data } = useGetCarsQuery({ status : 'available' , location : searchValue});
   const searchedCars : TCar[] = data?.data || [];
 
   

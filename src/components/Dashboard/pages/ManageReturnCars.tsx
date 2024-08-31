@@ -1,10 +1,9 @@
 
 import { useState } from "react"
 import { ClipLoader } from "react-spinners";
-import Swal from "sweetalert2";
-import CreateCarModal, { TCar } from "../components/Modal/CreateCarModal";
+import { TCar } from "../components/Modal/CreateCarModal";
 import UpdateCarModal from "../components/Modal/UpdateCarModal";
-import { useDeleteCarMutation, useGetCarsQuery } from "../../../redux/features/car/carApi";
+import { useGetCarsQuery } from "../../../redux/features/car/carApi";
 import { MdModeEdit } from "react-icons/md";
 
 

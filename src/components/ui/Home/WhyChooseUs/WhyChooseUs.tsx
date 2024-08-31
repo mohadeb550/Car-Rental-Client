@@ -25,7 +25,6 @@ const services  = [
 ]
 
 const WhyChooseUs = () => {
-    const darkMode = true;
 
     return (
        <Container>

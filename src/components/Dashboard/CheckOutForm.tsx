@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import { TBooking } from "../../pages/Booking";
 import { useAppSelector } from "../../redux/hooks";
 import { ClipLoader } from "react-spinners";
@@ -10,8 +10,9 @@ import { useUpdateBookingMutation } from "../../redux/features/booking/bookingAp
 
 
 
-export default function CheckoutForm({booking, setOpen } : { booking : TBooking}) {
-  const { _id, totalCost, car  } = booking || {};
+export default function CheckoutForm({booking, setOpen } : { booking : TBooking,  setOpen : React.Dispatch<React.SetStateAction<boolean>>}) {
+
+  const { _id, totalCost  } = booking || {};
   const [ savePayment ] = useSavePaymentMutation();
   const [ updateBooking ] = useUpdateBookingMutation()
 
@@ -21,12 +22,14 @@ export default function CheckoutForm({booking, setOpen } : { booking : TBooking}
     const [ clientSecret, setClientSecret ] = useState({});
     const stripe = useStripe()
     const elements = useElements();
-    const navigate = useNavigate()
 
 
     useEffect(()=>{
        if(totalCost){
-        fetch('http://localhost:3000/api/payments/create-payment-intent', {
+
+        // http://localhost:3000
+        // https://assignment-three-seven.vercel.app/api/payments/create-payment-intent
+        fetch('http://localhost:3000', {
           method : 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -34,13 +37,12 @@ export default function CheckoutForm({booking, setOpen } : { booking : TBooking}
           body : JSON.stringify({ totalCost, currency : 'usd'})
         }).then(data => data.json())
         .then(res => setClientSecret(res.data))
-
        }
     },[totalCost])
 
 
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true)
 
@@ -64,7 +66,7 @@ export default function CheckoutForm({booking, setOpen } : { booking : TBooking}
             console.log(error)
         }else{ console.log( 'payment method', paymentMethod)}
 
-        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment( clientSecret, {
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment( clientSecret as string, {
 
            payment_method : {
                 card : card,
@@ -85,7 +87,7 @@ export default function CheckoutForm({booking, setOpen } : { booking : TBooking}
               // now save the payment in database 
               const payment = {
                 email: currentUser?.email,
-                cost: parseInt(totalCost),
+                cost: Number(totalCost),
                 bookingId : _id,
                 transactionId : paymentIntent.id,
                 date : new Date(),

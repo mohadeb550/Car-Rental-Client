@@ -14,8 +14,6 @@ export default function Cars() {
     const { data , isFetching } = useGetCarsQuery(filterQuery);
     const cars : TCar[] = data?.data || [];
 
-    console.log(cars)
-
      //  {
                 // location : 'tangail'
                 // carType : 'sedun'
@@ -24,9 +22,7 @@ export default function Cars() {
                 // status : 'unavailable'
         //  }
 
-    const resetFilterQuery = () => {
-      setFilterQuery({})  
-    }
+ 
   return (
     <section className="pb-12">
         <SearchBanner setFilterQuery={setFilterQuery} />

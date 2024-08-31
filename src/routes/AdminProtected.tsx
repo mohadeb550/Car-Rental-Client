@@ -3,9 +3,17 @@ import { Navigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { jwtDecode } from "jwt-decode";
 import { logout } from "../redux/features/authentication/authSlice";
+import { ReactNode } from "react";
+
+export type TJwtDecoded = {
+  email : string;
+  exp : number;
+  iat : number;
+  role : string;
+}
 
 
-export default function AdminProtected({children}) {
+export default function AdminProtected({children}: { children : ReactNode}) {
 
   const token  = useAppSelector(state => state.auth.token);
     const dispatch = useAppDispatch();
@@ -16,9 +24,10 @@ export default function AdminProtected({children}) {
   }
 
     // decode the jwt token 
-    const decoded = jwtDecode(token);
+    const decoded : TJwtDecoded  = jwtDecode(token)
+    console.log(decoded)
  
-  if(decoded?.role === 'admin'){
+  if(decoded.role === 'admin'){
     return children;
     
   }else{

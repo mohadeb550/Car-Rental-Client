@@ -1,9 +1,6 @@
 import { useState } from "react"
 import { ClipLoader } from "react-spinners";
 import Swal from "sweetalert2";
-import CreateCarModal, { TCar } from "../components/Modal/CreateCarModal";
-import UpdateCarModal from "../components/Modal/UpdateCarModal";
-import { useDeleteCarMutation, useGetCarsQuery } from "../../../redux/features/car/carApi";
 import { useDeleteUserMutation, useGetUsersQuery } from "../../../redux/features/user/userApi";
 import { TUser } from "../../../redux/features/authentication/authSlice";
 import { MdModeEdit } from "react-icons/md";
@@ -11,8 +8,7 @@ import UpdateUserModal from "../components/Modal/UpdateUserModal";
 
 
 export default function ManageUsers() {
-
-    const [openCreateModal, setOpenCreateModal ] = useState<boolean>(false);
+  
     const [openUpdateModal, setOpenUpdateModal ] = useState<boolean>(false);
     const { data, isLoading } = useGetUsersQuery(undefined);
     const [ deleteUserFromDB ] = useDeleteUserMutation()

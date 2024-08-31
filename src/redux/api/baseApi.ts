@@ -5,7 +5,10 @@ import { RootState } from '../store';
 const baseApi = createApi({
     reducerPath: 'baseApi',
     baseQuery : fetchBaseQuery({
+
         baseUrl : 'http://localhost:3000',
+        // baseUrl : 'https://assignment-three-seven.vercel.app',
+
         prepareHeaders: (headers, { getState }) => {
             const token = (getState() as RootState).auth.token;
         

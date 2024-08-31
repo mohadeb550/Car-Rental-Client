@@ -1,37 +1,40 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Link, useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 import { useState } from "react";
 import { useSignUpMutation } from "../redux/features/authentication/authApi";
 import { toast } from "sonner";
 
 
-
 // const imageHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 // const imageUploadApi = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`
-
 
 
 export default function SignUp() {
   const { register, handleSubmit, formState: {errors}} = useForm();
   const [ loading , setLoading ] = useState(false)
-  const [ signUp, { isLoading}] = useSignUpMutation();
+  const [ signUp] = useSignUpMutation();
  
  
     const navigate = useNavigate();
 
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: FieldValues) => {
       setLoading(true)
 
-     const result = await signUp({
+     const result : any = await signUp({
       ...data,
       role :'user',
      })
 
+     console.log(result)
+
      if(result?.error?.data?.message){
       toast.error('Email is already exist')
+      setLoading(false)
+      return;
      }
      else if(result?.data?.success)
       toast.success('Registered Successfully! Please Login')

@@ -50,7 +50,7 @@ const logoutUser = () => {
     {/* <DrawerNav/> */}
 
    <Headroom> 
-  <div className={`${isDark? ' bg-[#000209]' : 'bg-gray-50'}`} >
+  <div className={`${isDark? ' bg-[#000209]' : 'bg-gray-50'} `} >
   <Container>
 
 <section className={`flex justify-between md:pt-2  h-16 md:h-[90px]  ${isDark? 'bg-[#000209]': 'bg-gray-50'}`}>
@@ -70,19 +70,18 @@ const logoutUser = () => {
 
 <div className="flex items-center justify-center  gap-2 z-50">
 
-
 {/* cart  */}  
-<div className="mr-3 md:mr-5 rounded-full text-xl md:text-[22px] lg:text-2xl text-black flex gap-5 md:gap-6 items-center">
+<div className="mr-3 md:mr-5 rounded-full text-xl md:text-[22px] lg:text-2xl text-black flex gap-5 md:gap-6 items-center ">
 
   <span>  <HiMagnifyingGlass  className="text-gray-300"/></span>
     {isDark?  <span onClick={()=> setDark(!isDark)}> <MdBrightness5  className="text-gray-300 cursor-pointer"/></span> : <span onClick={()=> setDark(!isDark)}> <MdDarkMode  className="text-gray-300 cursor-pointer"/></span>}
 
 
-    <div className="dropdown dropdown-end flex items-center justify-center gap-2 z-50">
+    <div className="dropdown dropdown-end flex items-center justify-center gap-2 z-20">
     
-    {!user && <Link to={'/sign-up'}> <button className=" px-8 text-sm mr-3 py-2 md:py-2 xl:py-3 font-semibold text-white rounded-xl transition bg-white/20 hover:bg-gray-800 whitespace-nowrap">Sign Up</button></Link>}
+    {!user && <Link to={'/sign-up'}> <button className="px-4 md:px-8 text-sm mr-3 py-1 md:py-2 xl:py-3 font-semibold text-zinc-200 rounded-xl transition bg-[#212433] hover:bg-gray-800 whitespace-nowrap">Sign Up</button></Link>}
     
-    <div className="z-30 w-9 md:w-10 rounded-full p-[2px] ">
+    <div className={`z-30 w-9 md:w-10 rounded-full p-[2px]  ${!user && 'hidden'}`}>
       {user && <img tabIndex={0} src={user?.image || 'https://i.ibb.co/Ttgtb82/pngwing-com-15.png' } className="dropdown w-9 h-7 md:w-8 md:h-8 object-cover cursor-pointer rounded-lg border border-zinc-400 p-[1px]" />}
 
       {user && 

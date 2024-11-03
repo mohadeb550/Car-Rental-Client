@@ -29,7 +29,7 @@ const Dashboard = () => {
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
 
 
-    <ul className="menu p-4 w-80 min-h-full bg-[#212433] lg:bg-[#000209] text-base-content pt-10">
+    <ul className="menu p-4 w-60 min-h-full bg-[#212433] lg:bg-[#000209] text-base-content pt-10">
       {/* Sidebar content here */}
 
       {/* profile stamp  */}

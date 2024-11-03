@@ -192,7 +192,7 @@ onClick={() => {sendReturnReq(booking._id!)}} >  <BsArrowUpRightSquareFill/> </b
           {booking.status === 'pending'? <>   <td className="whitespace-nowrap font-medium  text-sm md:text-lg  px-6 py-4 border border-zinc-400">
 
 {/* delete product  */}
-<button className={`  text-white rounded font-semibold transition-all md:text-2xl `}
+<button className={`  text-white rounded font-semibold transition-all text-2xl `}
 onClick={() => cancelBookingIntoDB(booking._id!, booking.car._id!)} > 
 <FcCancel/></button>
 
@@ -201,7 +201,7 @@ onClick={() => cancelBookingIntoDB(booking._id!, booking.car._id!)} >
 
  <td className="whitespace-nowrap font-medium border-r text-sm md:text-lg  px-6 py-4 border-zinc-500">
 
-<button className={`bg-blue-700 p-1 px-2 md:py-2  text-white rounded font-semibold transition-all hover:bg-blue-800 text-[12px] md:text-base `}
+<button className={`bg-blue-700 p-1 px-2 md:py-2  text-white rounded font-semibold transition-all hover:bg-blue-800 text-lg md:text-base `}
 onClick={() => {
  setUpdateBookingId(booking._id!)
  setOpenUpdateModal(true)

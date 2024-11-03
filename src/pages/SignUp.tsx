@@ -16,6 +16,8 @@ export default function SignUp() {
   const { register, handleSubmit, formState: {errors}} = useForm();
   const [ loading , setLoading ] = useState(false)
   const [ signUp] = useSignUpMutation();
+  const [ confirmPassError ,setConfirmPassError ] = useState('')
+
  
  
     const navigate = useNavigate();
@@ -24,26 +26,41 @@ export default function SignUp() {
     const onSubmit = async (data: FieldValues) => {
       setLoading(true)
 
-     const result : any = await signUp({
-      ...data,
-      role :'user',
-     })
+      const imageFile = data.image;
+      const formData = new FormData();
+      formData.append('image', imageFile);
 
-     console.log(result)
+      // console.log(imageFile)
 
-     if(result?.error?.data?.message){
-      toast.error('Email is already exist')
-      setLoading(false)
-      return;
-     }
-     else if(result?.data?.success)
-      toast.success('Registered Successfully! Please Login')
-      navigate('/login');
+
+    //   if(data.password !== data.confirmPassword){
+    //     setConfirmPassError('Confirm Your Password');
+    //     setLoading(false)
+    //     return;
+    //   }
+    //   else{
+    //     setConfirmPassError('')
+    //   }
+
+    //  const result : any = await signUp({
+    //   ...data,
+    //   role :'user',
+    //  })
+
+
+    //  if(result?.error?.data?.message){
+    //   toast.error('Email is already exist')
+    //   setLoading(false)
+    //   return;
+    //  }
+    //  else if(result?.data?.success)
+    //   toast.success('Registered Successfully! Please Login')
+    //   navigate('/login');
     }
 
 
   return (
-    <div className="hero h-[700px] md:h-[750px] px-4 ">
+    <div className="hero h-[730px] md:h-[790px] px-4 ">
     <div className="hero-content flex-col w-full gap-0">
 
     <div className="text-center lg:text-left pt-5 rounded-l-lg">
@@ -82,13 +99,22 @@ export default function SignUp() {
             <input type="text" placeholder="Password" className="input border border-zinc-600 focus:border-zinc-400  bg-transparent " {...register('password', {required: true, pattern:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{6,8}$/ })} />
 
             <span className="text-red-400 font-semibold text-sm p-1"> {errors.password?.type === 'required' && 'Password is required'} {errors.password?.type === 'pattern' && 'Min 1 uppercase letter, 1 lowercase letter, 1 special character, 1 number, min 6 characters, max 8 characters.'} </span>
-
-
-            <div>
-                <h4 className="text-sm font-semibold text-amber-400"> Already Have An Account? <Link to='/login'> <span className="text-white/80 underline"> Login</span></Link> </h4>
-            </div>
           
           </div>
+
+          <div className="form-control">
+            <label className="label">
+              <span className="">Confirm Password</span>
+            </label>
+            <input type="text" placeholder="Confirm Password" className="input border border-zinc-600 focus:border-zinc-400  bg-transparent " {...register('confirmPassword', {required: true })} />
+
+            <span className="text-red-400 font-semibold text-sm p-1"> {errors.confirmPassword?.type === 'required'} {confirmPassError? confirmPassError : ''} </span>
+          
+          </div>
+
+          <div>
+                <h4 className="text-sm font-semibold text-amber-400"> Already Have An Account? <Link to='/login'> <span className="text-white/80 underline"> Login</span></Link> </h4>
+            </div>
 
           <div className="form-control">
             <label className="label">
@@ -97,6 +123,17 @@ export default function SignUp() {
             <input type="text" placeholder="Photo URL" className="input border border-zinc-600 focus:border-zinc-400 bg-transparent  " {...register('image',{required: true})} />
             <span className="text-red-400 font-semibold text-sm p-1"> {errors.image?.type === 'required' && 'Image is required'}  </span>
           </div>
+
+          <div className="mt-4">
+        <label>
+          <input
+            type="checkbox"
+            {...register('terms', { required: true })}
+          />
+          I agree to the Terms and Conditions
+        </label>
+        <span className="text-red-400 font-semibold text-sm p-1"> {errors.terms?.type === 'required' && 'You must agree to the terms'}  </span>
+      </div>
 
 
           <div className="form-control mt-6">

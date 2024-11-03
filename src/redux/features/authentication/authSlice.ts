@@ -9,6 +9,7 @@ export type TUser = {
   address? : string;
   iat?: number;
   exp?: number;
+  isBlocked? : boolean;
 };
 
 type TAuthState = {

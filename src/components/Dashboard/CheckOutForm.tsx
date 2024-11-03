@@ -29,7 +29,8 @@ export default function CheckoutForm({booking, setOpen } : { booking : TBooking,
 
         // http://localhost:3000
         // https://assignment-three-seven.vercel.app/api/payments/create-payment-intent
-        fetch('http://localhost:3000', {
+
+        fetch('https://assignment-three-seven.vercel.app/api/payments/create-payment-intent', {
           method : 'POST',
           headers: {
             "Content-Type": "application/json",

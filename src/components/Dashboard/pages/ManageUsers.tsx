@@ -1,46 +1,80 @@
 import { useState } from "react"
 import { ClipLoader } from "react-spinners";
 import Swal from "sweetalert2";
-import { useDeleteUserMutation, useGetUsersQuery } from "../../../redux/features/user/userApi";
+import { useGetUsersQuery, useUpdateUserMutation } from "../../../redux/features/user/userApi";
 import { TUser } from "../../../redux/features/authentication/authSlice";
 import { MdModeEdit } from "react-icons/md";
 import UpdateUserModal from "../components/Modal/UpdateUserModal";
+import { MdOutlineBlock } from "react-icons/md";
 
 
 export default function ManageUsers() {
   
     const [openUpdateModal, setOpenUpdateModal ] = useState<boolean>(false);
     const { data, isLoading } = useGetUsersQuery(undefined);
-    const [ deleteUserFromDB ] = useDeleteUserMutation()
+    const [ updateUser ] = useUpdateUserMutation();
     const [updateUserEmail, setUpdateUserEmail ] = useState('')
 
     const users: TUser[] = data?.data || []
 
 
     // delete a product 
-    const deleteUser = (userId: string) => {
-    Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
+    const updateUserInfo = (userId: string, action: string) => {
 
-}).then( async (result) => {
-  if (result.isConfirmed) {
-   const response = await deleteUserFromDB(userId).unwrap()
-   if(response.success){
-    Swal.fire({
-      title: "Deleted!",
-      text: "User has been deleted.",
-      icon: "success"
-    });
-   }
+      if(action === 'block'){
 
-  }
-});
+        Swal.fire({
+          title: "Are you sure?",
+          text: "Are you going to block this user?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes Block!"
+        
+        }).then( async (result) => {
+          if (result.isConfirmed) {
+           const response = await updateUser({ userId , payload: { isBlocked : true}}).unwrap()
+           if(response.success){
+            Swal.fire({
+              title: "Blocked!",
+              text: "User has been Blocked.",
+              icon: "success"
+            });
+           }
+        
+          }
+        });
+
+      }
+      
+      else if(action === 'activate'){
+        Swal.fire({
+          title: "Are you sure?",
+          text: "Are you going to activate this user?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Activate!"
+        
+        }).then( async (result) => {
+          if (result.isConfirmed) {
+           const response = await updateUser({ userId , payload: { isBlocked : false}}).unwrap()
+           if(response.success){
+            Swal.fire({
+              title: "Activated!",
+              text: "User has been Activated.",
+              icon: "success"
+            });
+           }
+        
+          }
+        });
+
+      }
+
+ 
     }
 
   return (
@@ -147,10 +181,15 @@ export default function ManageUsers() {
 
               <td className="whitespace-nowrap font-medium  text-sm md:text-lg  px-6 py-4 border-zinc-500">
 
-             {/* delete product  */}
-             <button className={`bg-red-600 p-1 px-2 md:py-2 md:px-4 text-white rounded font-semibold transition-all hover:bg-red-700 text-[12px] md:text-base `}
-             onClick={() => deleteUser(user._id!)} > 
-             Delete </button>
+             {/* block / active user */}
+
+             {user.isBlocked? <button className={`bg-purple-800 p-1 px-2 md:py-2 md:px-4 text-white rounded font-semibold transition-all hover:bg-purple-900 text-sm `}
+             onClick={() => updateUserInfo(user._id!, 'activate')} > 
+             Activate</button> 
+             :  
+             <button className={`bg-red-600 p-1 px-2 md:py-2 md:px-4 text-white rounded font-semibold transition-all hover:bg-red-700 text-sm flex items-center gap-1 mx-auto`}
+             onClick={() => updateUserInfo(user._id!, 'block')} > 
+             <MdOutlineBlock/> <span>Block</span></button>}
     
                </td>
             

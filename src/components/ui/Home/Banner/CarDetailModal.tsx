@@ -37,7 +37,7 @@ export default function CarDetailModal ({ setIsOpen,  carId} : TModalProps) {
         <section>
         <div className="block rounded-md w-full font-play">
      <div className="p-6 pb-4 flex items-center justify-center dz-media">
-     <img className="border-4 border-gray-100 rounded-lg w-40 h-44 md:w-44 md:h-44 object-contain  p-3 shadow-2xl"  src={car?.images[0]} />
+     <img className="rounded-lg w-40 h-44 md:w-44 md:h-44 object-contain  p-3"  src={car?.images[0]} />
      </div>
     
     <div className="p-6 pt-0 ">

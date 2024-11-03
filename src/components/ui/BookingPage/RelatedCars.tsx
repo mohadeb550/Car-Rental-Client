@@ -6,6 +6,7 @@ import { useGetCarsQuery } from "../../../redux/features/car/carApi";
 import { TCar } from "../../Dashboard/components/Modal/CreateCarModal";
 import Container from "../../layout/Container";
 import RelatedCarCard from "./RelatedCarCard";
+import { FaSearch } from "react-icons/fa";
 
 
 export default function RelatedCars() {
@@ -39,29 +40,30 @@ export default function RelatedCars() {
         <section>
 
           {/* all filtering section  */}
-          <div className="flex justify-between md:justify-end my-6 gap-3 flex-wrap-reverse">
+          <div className="grid grid-cols-1 md:grid-cols-3 my-6 gap-3 ">
 
-          <div>
-        <input onChange={(e) => setFilterQuery(prev => ({...prev, location: e.target.value}))}
-        className="peer h-full w-full outline-none text-sm text-gray-800 placeholder:text-gray-700 px-4 rounded"
-        type="text"
-        id="search"
-        placeholder="Search cars by location..." /> 
+        <div className="flex items-center bg-[#171A21] text-gray-300  p-3 rounded ">
+          <FaSearch className=" mr-2" />
+          <input
+          onChange={(e) => setFilterQuery(prev => ({...prev, location: e.target.value}))}
+            type="text"
+            placeholder="location..."
+            className="bg-transparent rounded-md focus:outline-none w-full placeholder:text-gray-300 text-sm md:text-base"
+          />
         </div>
             
           <select 
           onChange={(e)=> setFilterQuery(prev => ({...prev, sortByCost: e.target.value}))}
-           className=" max-w-xs outline p-2 outline-black/20 rounded-sm outline-1 text-xs md:text-sm">
+           className="outline p-2 outline-black/20 rounded-md outline-1  bg-[#171A21] text-gray-300 text-sm">
               <option disabled selected> Sort by Cost</option>
                <option value='1'> Low to High</option>
                <option value='-1'> High to Low</option>
         </select>
 
         
-        
         <select 
         onChange={(e) => setFilterQuery(prev => ({...prev, carType: e.target.value}))}
-         className=" max-w-xs outline p-2 outline-black/20 rounded-sm outline-1 text-xs md:text-sm ">
+         className=" outline p-2 outline-black/20 rounded-md outline-1 text-sm bg-[#171A21] text-gray-300">
               <option disabled selected> Filter by Car Type</option>
               <option value='compact'>Compact</option>
               <option value='suv'>SUVs</option>

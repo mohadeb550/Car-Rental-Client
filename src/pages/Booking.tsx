@@ -12,6 +12,10 @@ import { useGetSingleUserQuery } from '../redux/features/user/userApi';
 import ConfirmBookingModal from '../components/ui/Modal/ConfirmBookingModal';
 import RelatedCars from '../components/ui/BookingPage/RelatedCars';
 import { TUser } from '../redux/features/authentication/authSlice';
+import { BsCalendar2Event } from "react-icons/bs";
+import { IoTimeOutline } from "react-icons/io5";
+import { AiFillEye } from 'react-icons/ai';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 export type TBooking = {
     _id? : string;
@@ -68,8 +72,7 @@ const Booking = () => {
         <Container>
               <RelatedCars/>
 
-
-        <div className="py-14 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+        <div className="py-8 px-2 2xl:mx-auto">
 
             <div className="flex justify-start item-start space-y-2 flex-col ">
                 <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800"> <span className="text-amber-400 inter-medium">Book A Reservation </span></h1>
@@ -111,12 +114,19 @@ const Booking = () => {
 
 <div className="flex  justify-start items-center gap-3 mb-3">
 <label className="font-semibold text-zinc-300">Date</label>
-<input type="date" className="bg-zinc-300 outline-none border-b-2 border-gray-600  w-full py-1 rounded-sm" {...register("date")} required />
+<div className='relative w-full flex items-center'>
+<input type="date" className="bg-transparent text-gray-300 outline-none border-b-2 border-gray-600  w-full py-1 rounded-sm" {...register("date")} required />
+<BsCalendar2Event className='text-gray-300 pointer-events-none absolute right-2'/>
+</div>
 </div>
 
 <div className="flex  justify-start items-center gap-3 mb-3">
 <label className="font-semibold text-zinc-300">Start Time</label>
-<input type="time" className="bg-zinc-300 outline-none border-b-2 border-gray-600  w-full py-1 rounded-sm" {...register("startTime")} required />
+
+<div className='relative w-full flex items-center'>
+<input type="time" className="bg-transparent text-gray-300  outline-none border-b-2 border-gray-600  w-full py-1 rounded-sm" {...register("startTime")} required />
+<IoTimeOutline className='text-gray-300 pointer-events-none absolute text-xl right-2'/>
+</div>
 </div>
 
 <div className="flex flex-col justify-start items-start mb-3">
@@ -126,7 +136,7 @@ const Booking = () => {
 
 <div className="flex flex-col justify-start items-start mb-3">
 <label className="font-semibold text-zinc-300">Payment Method</label>
-<select className=" max-w-xs outline p-2 mt-1 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("paymentMethod")} >
+<select className=" max-w-xs bg-transparent text-gray-300 outline p-2 mt-1 outline-gray-700 rounded-sm outline-1 text-xs md:text-sm " {...register("paymentMethod")} >
               <option value='stripe'>Stripe Payment</option>
               <option value='amr-pay'>Amar Pay</option>
         </select>
@@ -163,24 +173,38 @@ const Booking = () => {
         <img src={car.images[0]} className='w-56 md:w-60 lg:w-40 xl:w-60'/>
         </div>
 
-        <div className="flex flex-col gap-5 flex-1">
-            <p className="text-amber-400 py-1 text-sm px-3 border w-32 border-amber-400"> {car.status} </p>
-            <h2 className="text-2xl lg:text-[28px] text-zinc-300 lg:text-3xl font-semibold font-play"> {car.name} </h2>
+        {/* text part  */}
+      <div className="flex-1 lg:ml-3">
+
+{/* Car Name and Price */}
+<div className="flex flex-col md:flex-row md:items-center md:justify-between">
+        <h2 className="text-2xl font-bold text-amber-500">{car?.name}</h2>
+      </div>
+
+      {/* Car Location */}
+      <div className="flex items-center mt-2 gap-3 text-gray-400">
+      <p className="text-2xl font-semibold mt-4 md:mt-0 text-gray-200">
+          ${car?.pricePerHour}/<span className="text-gray-400 text-xl">hour</span>
+        </p>
        
-            <h3 className="text-lg   text-amber-400 inter-bold">{`$${car.pricePerHour}`}  :   <span className="text-zinc-300 "> (Per Hour)</span> </h3>
+        <span className='flex items-center gap-2'> <FaMapMarkerAlt className="ml-2 " />{car?.location}</span>
 
-         
-           <div className="flex gap-3 items-center uppercase font-semibold"> <p className="capitalize text-zinc-300">Color :</p>
-           <b className="text-zinc-400 border border-gray-300 py-1 px-3  rounded uppercase font-medium"> {car.color} </b>
-           </div>
+      </div>
 
-           <div className="flex gap-3 items-center uppercase "> 
-          {car?.features?.slice(0,2).map(feature =>  <span className="text-zinc-400 border border-gray-300 text-xs xl:text-sm  px-3  rounded uppercase">{feature} </span>)}
-           </div>
+      {/* Car Type and Status */}
+      <div className="flex items-center space-x-4 mt-4">
+        <span className={`px-3 py-1 rounded-full text-sm ${car?.isElectric ? 'bg-amber-600' : 'bg-gray-400'}`}>
+          {car.isElectric ? "Electric" : "Fuel"}
+        </span>
+        <span className={`px-3 py-1 rounded-full text-sm ${car.status === 'available' ? 'bg-green-600' : 'bg-red-600'}`}>
+          {car.status === "available" ? "Available" : "Unavailable"}
+        </span>
+        <span className="px-3 py-1 rounded-full text-sm bg-gray-400">{car?.carType}</span>
+      </div>
+      </div>
 
-        </div>
         </section>
-        <h6 className='text-zinc-400 mt-4'>{car.description}</h6>
+        <h6 className='text-zinc-300 mt-4'>{car.description}</h6>
        </div>
 
     </section>}

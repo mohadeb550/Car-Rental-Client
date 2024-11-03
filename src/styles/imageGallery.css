@@ -9,6 +9,10 @@
     width: 120px;
     object-fit: contain;
 }
+.image-gallery-thumbnails-container{
+    display: flex;
+   
+}
 
 .image-gallery-slide-wrapper{
     margin-bottom: 15px;
@@ -18,7 +22,7 @@
     border: transparent;
 }
 .image-gallery-thumbnail.active{
-    border: 1px solid rgba(17, 18, 17, 0.285);
+    border: 1px solid rgba(255, 255, 255, 0.411);
     border-radius: 5px;
 }
 .image-gallery-thumbnail-inner{

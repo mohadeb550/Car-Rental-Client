@@ -48,7 +48,7 @@ export default function Cars() {
           <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center gap-7  mb-8 md:mb-16 xl:mt-20">
 
           {/* Sidebar  */}
-          <div className={`transition-all duration-500 ${isSideBarOpen? "fixed top-20": "fixed -top-full opacity-0 pointer-events-none "} lg:opacity-100  row-span-12 bg-[#171A21] rounded-2xl lg:relative lg:inset-0 w-full`}>
+          <div className={`transition-all duration-500 ${isSideBarOpen? "fixed top-20": "fixed -top-full opacity-0 pointer-events-none lg:pointer-events-auto "} lg:opacity-100  row-span-12 bg-[#171A21] rounded-2xl lg:relative lg:inset-0 w-full`}>
 
           {/* Sidebar closing button  */}
           <IoCloseSharp onClick={()=> setSidebarOpen(!isSideBarOpen)} className="lg:hidden text-gray-300 absolute top-5 right-5 z-20 text-2xl"/>

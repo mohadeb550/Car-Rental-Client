@@ -76,8 +76,6 @@ Friday/Govt. Holidays: 10AM-6PM</span>
 
 
         </section>
-
-        <div className="text-center py-10"> <h2 className="text-gray-500 font-semibold text-md mb-3">Copyright @2024 FEBD Ltd. All rights reserved by ZipCar</h2></div>
     </div>
  
   )

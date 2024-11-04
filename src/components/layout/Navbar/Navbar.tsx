@@ -74,7 +74,7 @@ const logoutUser = () => {
 <div className="mr-3 md:mr-5 rounded-full text-xl md:text-[22px] lg:text-2xl text-black flex gap-5 md:gap-6 items-center ">
 
   <span>  <HiMagnifyingGlass  className="text-gray-300"/></span>
-    {isDark?  <span onClick={()=> setDark(!isDark)}> <MdBrightness5  className="text-gray-300 cursor-pointer"/></span> : <span onClick={()=> setDark(!isDark)}> <MdDarkMode  className="text-gray-300 cursor-pointer"/></span>}
+    {/* {isDark?  <span onClick={()=> setDark(!isDark)}> <MdBrightness5  className="text-gray-300 cursor-pointer"/></span> : <span onClick={()=> setDark(!isDark)}> <MdDarkMode  className="text-gray-300 cursor-pointer"/></span>} */}
 
 
     <div className="dropdown dropdown-end flex items-center justify-center gap-2 z-20">

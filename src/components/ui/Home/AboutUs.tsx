@@ -9,6 +9,9 @@ const AboutUs = () => {
 
     return (
         <Container>
+
+<h1 className="text-zinc-400 text-center text-3xl lg:text-5xl carter-one-regular my-2">About Us</h1>
+
             <div id="about-section"  className="mb-20 lg:mb-32 xl:mb-40  mt-4 md:mt-3 lg:mt-7 xl:mt-14 bg-[#171A21] py-20 px-9 rounded-2xl">
 
     <section className="h-[430px] md:h-[270px] lg:h-[300px] xl:h-[430px]  font-jakarta flex flex-col-reverse md:flex-row items-center justify-between gap-5 md:gap-16">
@@ -16,7 +19,7 @@ const AboutUs = () => {
              {/* content section  */}
     <div className="w-full md:w-[40%] h-full flex flex-col justify-center gap-1 md:gap-2 lg:gap-3 xl:gap-4 items-start">
 
-            <h4 className={` md:text-lg lg:text-2xl xl:text-[23px] inter-medium ${isDark?'text-amber-500': 'text-black'}`}>About Us</h4>
+        
                     <h4 style={{lineHeight: 1.3}} className={`text-[28px] lg:text-4xl xl:text-5xl carter-one-regular ${isDark?'text-zinc-400': 'text-black'}`}>We Are Who Will <br/>Grow <span className='text-primary-orange'>Your Business</span> </h4>
                     <p className={`text-xs lg:text-sm xl:text-lg mt-2  ${isDark? 'text-gray-400': 'text-gray-800'}`}>Our team is a collective of passionate individuals who thrive on pushing boundaries, constantly seeking growth and improvement with every new project we undertake. </p>
 

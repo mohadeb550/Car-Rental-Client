@@ -4,7 +4,7 @@ const NewsLetter = () => {
 
     return (
        <Container>
-         <div className="flex h-[230px] lg:h-[250px] xl:h-[340px] mb-2 rounded-2xl lg:rounded-3xl relative px-2 md:px-7 xl:px-16 mt-36 bg-[#171A21]/80">
+         <div className="flex h-[230px] lg:h-[250px] xl:h-[340px] mb-2 rounded-2xl lg:rounded-3xl relative px-2 md:px-7 xl:px-16 mt-36 gradient-background-testo">
 
 {/* text section  */}
 <section className=" px-4 md:px-7 xl:px-3 flex flex-col gap-4 md:gap-3 lg:gap-6 xl:gap-10 items-start justify-center z-20">

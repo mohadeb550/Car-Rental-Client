@@ -54,3 +54,12 @@
     background: rgb(0,1,6);
     background: linear-gradient(169deg, rgba(0,1,6,1) 26%, rgba(33,36,51,1) 68%);
   }
+
+  .gradient-background-about{
+    background: rgba(0, 1, 6, 0.488);
+    background: linear-gradient(2deg, rgba(0, 1, 6, 0.302) 26%, rgb(32, 35, 49) 68%);
+  }
+  .gradient-background-testo{
+    background: rgba(0, 1, 6, 0.488);
+    background: linear-gradient(150deg, rgba(0, 1, 6, 0.302) 26%, rgb(32, 35, 49) 68%);
+  }

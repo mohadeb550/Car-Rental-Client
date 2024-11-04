@@ -12,7 +12,7 @@ const AboutUs = () => {
 
 <h1 className="text-zinc-400 text-center text-3xl lg:text-5xl carter-one-regular my-2">About Us</h1>
 
-            <div id="about-section"  className="mb-20 lg:mb-32 xl:mb-40  mt-4 md:mt-3 lg:mt-7 xl:mt-14 bg-[#171A21] py-20 px-9 rounded-2xl">
+            <div id="about-section"  className="mb-20 lg:mb-32 xl:mb-40  mt-4 md:mt-3 lg:mt-7 xl:mt-14 gradient-background-about py-20 px-9 rounded-2xl">
 
     <section className="h-[430px] md:h-[270px] lg:h-[300px] xl:h-[430px]  font-jakarta flex flex-col-reverse md:flex-row items-center justify-between gap-5 md:gap-16">
 

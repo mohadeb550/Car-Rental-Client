@@ -13,12 +13,12 @@ const AccordionItem = ({ header, ...rest }) => {
        <h2 className={`text-base md:text-lg lg:text-xl xl:text-[22px] w-[80%] `}> {header}</h2>
 
        {/* arrow button style  */}
-        <div  className={`bg-[#282A36] absolute right-5 md:-bottom-3 lg:-bottom-2 py-1 lg:py-2 xl:py-2 rounded-lg px-4 lg:px-5 xl:px-5 text-2xl md:text-3xl xl:text-4xl ml-auto transition-transform duration-200 ease-out ${ isEnter ? "rotate-180 text-primary-gold" : "text-gray-300" }`}> <GoArrowDownRight /></div>
+        <div  className={`gradient-background-testo absolute right-5 md:-bottom-3 lg:-bottom-2 py-1 lg:py-2 xl:py-2 rounded-lg px-4 lg:px-5 xl:px-5 text-2xl md:text-3xl xl:text-4xl ml-auto transition-transform duration-200 ease-out ${ isEnter ? "rotate-180 text-primary-gold" : "text-gray-300" }`}> <GoArrowDownRight /></div>
       </>
     )}
 
     // accrodian item style 
-    className=''  buttonProps={{ className: ({ isEnter }) => `relative flex w-full py-3 md:py-2 lg:py-3 xl:py-5 text-left rounded-lg px-6 lg:px-10 mb-4 xl:mb-6 ${darkMode?'bg-primary-dark-gray  hover:bg-gray-800/50': 'bg-[#171A21]'} ${ isEnter? darkMode?'text-primary-gold': 'text-amber-500' : darkMode? 'text-gray-300' : 'text-gray-400'    }`
+    className=''  buttonProps={{ className: ({ isEnter }) => `relative flex w-full py-3 md:py-2 lg:py-3 xl:py-5 text-left rounded-lg px-6 lg:px-10 mb-4 xl:mb-6 ${darkMode?'bg-primary-dark-gray  hover:bg-gray-800/50': 'gradient-background-testo'} ${ isEnter? darkMode?'text-primary-gold': 'text-gray-300' : darkMode? 'text-gray-300' : 'text-gray-400'    }`
     }} 
     
       // inside content style 

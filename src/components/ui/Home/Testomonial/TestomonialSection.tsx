@@ -55,7 +55,7 @@ const TestomonialSection = () => {
     return (
        <Container>
 
-            <section id="testimonial-section"  className=" bg-[#171A21] p-8 lg:pb-20 rounded-2xl">
+            <section id="testimonial-section"  className=" gradient-background-testo p-8 lg:pb-20 rounded-2xl">
 
             {/*slick slider  */}
             <SliderBox reviews={reviews} />

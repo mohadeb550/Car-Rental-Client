@@ -69,7 +69,7 @@ export default function Banner() {
 
 <div className="flex-1 h-full w-full pt-7 md:pt-2 xl:pt-4">
 
-<div className="flex items-center justify-center gap-6 lg:gap-16 xl:gap-20 mb-5 md:mb-2 xl:mb-4">
+<div className="flex items-center justify-end lg:mr-8 gap-6 lg:gap-16 xl:gap-20 mb-5 md:mb-2 xl:mb-4">
 
 {/* badge  */}
 
@@ -91,7 +91,9 @@ Winning</p>
 </div>
 </div>
 
-<img src="/pngegg (17).png" className="md:h-[280px] lg:h-[360px] w-full object-contain" />
+<div className="flex items-center justify-end">
+<img src="/pngegg (17).png" className="md:h-[280px] lg:h-[360px] w-fit object-contain" />
+</div>
 </div>
 
 

@@ -30,7 +30,7 @@ export default function CheckoutForm({booking, setOpen } : { booking : TBooking,
         // http://localhost:3000
         // https://assignment-three-seven.vercel.app/api/payments/create-payment-intent
 
-        fetch('https://assignment-three-seven.vercel.app/api/payments/create-payment-intent', {
+        fetch('http://localhost:3000/api/payments/create-payment-intent', {
           method : 'POST',
           headers: {
             "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export default function CheckoutForm({booking, setOpen } : { booking : TBooking,
     <section>
 
         <form onSubmit={handleSubmit}>
-        <h2 className="uppercase text-gray-400 md:text-[17px] font-semibold text-center my-6 "> Total : {totalCost?.toFixed(1)} Taka </h2>
+        <h2 className="uppercase text-gray-400 md:text-[17px] font-semibold text-center my-6 "> Total : {totalCost?.toFixed(1)}$</h2>
             <CardElement options={{
           style: {
             base: {

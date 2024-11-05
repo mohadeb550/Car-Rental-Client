@@ -14,21 +14,21 @@ const BookingHistory = () => {
   return (
     <div className="container mx-auto px-4 py-8">
 
-     <div className="text-center my-16">
+     <div className="text-center my-12">
   <h2 className="text-3xl lg:text-4xl carter-one-regular text-center text-gray-300 ">Booking History</h2>
-    <p className=" mt-2 text-gray-400 lg:text-lg">Explore a wide variety of vehicles we have to offer for every journey.</p>
+ 
   </div>
 
       {bookings.map((booking) => (
         <div
           key={booking._id}
-          className="card bg-[#171A21] shadow-xl mb-6 p-4 flex flex-col md:flex-row"
+          className="card bg-[#171A21] shadow-xl mb-6 p-4 flex flex-col md:flex-row gap-5"
         >
-          <div className="md:w-1/3">
+          <div className="md:w-1/4">
             <img
               src={booking.car.images[0]}
               alt={booking.car.name}
-              className="w-full h-48 object-cover rounded"
+              className="w-full h-48 object-contain rounded"
             />
           </div>
           <div className="md:w-2/3 p-4">
@@ -57,6 +57,8 @@ const BookingHistory = () => {
           </div>
         </div>
       ))}
+
+      {!bookings?.length && <p className=" mt-2 text-gray-400 lg:text-lg text-center">No bookings yet.</p>}
     </div>
   );
 };

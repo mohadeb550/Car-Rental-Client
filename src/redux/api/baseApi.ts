@@ -20,7 +20,7 @@ const baseApi = createApi({
           },
     }),
     
-    tagTypes: ['Cars', 'Single-car', 'Users', 'Single-user', 'Bookings', 'Single-booking', 'Statistics'],
+    tagTypes: ['Cars', 'Single-car', 'Users', 'Single-user', 'Bookings', 'Single-booking', 'Statistics', 'Payments'],
     endpoints: () => ({})
 })
 

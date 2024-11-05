@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
 
     {/* sonner toaster  */}
-    <Toaster position="top-center"  />
+    <Toaster position="top-center" richColors theme='dark'  />
     
   <Provider store={store}>
 

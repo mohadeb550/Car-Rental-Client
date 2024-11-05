@@ -91,7 +91,7 @@ const Booking = () => {
                          {/* collect user info  */}
             <form className="flex flex-col lg:flex-row justify-between items-center w-full gap-2 lg:gap-5 xl:gap-8  rounded-md " onSubmit={handleSubmit(onSubmit)}>
 
-<section className='flex-1 w-full bg-black border border-zinc-700 rounded-xl p-7'> 
+<section className='flex-1 w-full bg-[#171A21] border border-zinc-700 rounded-xl p-7'> 
     <div className="flex flex-col justify-start items-start mb-3">
 <label className="font-semibold text-zinc-300">User Name</label>
 <input type="text" className="bg-transparent text-amber-400 outline-none border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm" {...register("userName")} defaultValue={user?.name} readOnly />

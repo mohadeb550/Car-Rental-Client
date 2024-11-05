@@ -37,12 +37,12 @@ const { car, date,location,paymentMethod,phone, startTime ,user  } = booking;
   return (
     <section className="w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-50  bg-black/30 backdrop-blur-sm flex justify-center items-center overflow-y-auto px-4 md:px-0">  
        
-       <div className="w-[400px] md:w-[600px] p-5 bg-[#000209] border border-amber-400/50 rounded-lg relative" >
+       <div className="w-[400px] md:w-[600px] p-5 bg-[#171A21] border border-amber-400/50 rounded-lg relative" >
 
         {/* loading white layer  */}
-      {isLoading && <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-gray-800 rounded-md flex justify-center items-center"> 
+      {isLoading && <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-[#171A21]/80 rounded-md flex justify-center items-center"> 
         <ClipLoader
-           color='#000002'
+           color='#FBBF24'
            loading={isLoading}
           //  cssOverride={override}
            size={60}
@@ -53,7 +53,7 @@ const { car, date,location,paymentMethod,phone, startTime ,user  } = booking;
 
       <div className="bg-opacity-75 flex items-center justify-center ">
     {/* <!-- Modal Content --> */}
-    <div className=" bg-[#000209] w-full">
+    <div className=" bg-[#171A21] w-full">
         {/* <!-- Modal Header --> */}
         <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-semibold text-gray-400">Confirm Your Booking</h2>

@@ -3,6 +3,7 @@ import { FaHouse } from "react-icons/fa6";
 import { VscTasklist } from "react-icons/vsc";
 import { NavLink } from "react-router-dom";
 import { HiViewGrid } from "react-icons/hi";
+import { FaHistory } from "react-icons/fa";
 
 const UserSidebar = () => {
     return (
@@ -26,6 +27,13 @@ const UserSidebar = () => {
        <NavLink to="/dashboard/my-bookings" className={({isActive})=> isActive? ' flex items-center p-2 text-amber-400 inter-regular   ': 'flex items-center p-2 text-gray-200 rounded-lg  ' }>
        <VscTasklist size={22} className="" />
           <span className="flex-1 ms-3 text-sm lg:text-base whitespace-nowrap">MY Bookings</span>
+         
+       </NavLink>
+    </li>
+  <li>
+       <NavLink to="/dashboard/payment-history" className={({isActive})=> isActive? ' flex items-center p-2 text-amber-400 inter-regular   ': 'flex items-center p-2 text-gray-200 rounded-lg  ' }>
+       <FaHistory size={22} className="" />
+          <span className="flex-1 ms-3 text-sm lg:text-base whitespace-nowrap">Payment History</span>
          
        </NavLink>
     </li>

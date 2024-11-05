@@ -42,20 +42,20 @@ export default function SignUp() {
     //     setConfirmPassError('')
     //   }
 
-    //  const result : any = await signUp({
-    //   ...data,
-    //   role :'user',
-    //  })
+     const result : any = await signUp({
+      ...data,
+      role :'user',
+     })
 
 
-    //  if(result?.error?.data?.message){
-    //   toast.error('Email is already exist')
-    //   setLoading(false)
-    //   return;
-    //  }
-    //  else if(result?.data?.success)
-    //   toast.success('Registered Successfully! Please Login')
-    //   navigate('/login');
+     if(result?.error?.data?.message){
+      toast.error('Email is already exist')
+      setLoading(false)
+      return;
+     }
+     else if(result?.data?.success)
+      toast.success('Registered Successfully! Please Login')
+      navigate('/login');
     }
 
 

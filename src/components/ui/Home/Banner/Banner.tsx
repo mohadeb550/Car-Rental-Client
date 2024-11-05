@@ -58,12 +58,6 @@ export default function Banner() {
         <button className=" px-4 md:px-3 lg:px-8 text-sm lg:text-base  py-2 md:py-2 xl:py-3 whitespace-nowrap inter-medium text-white rounded transition bg-amber-600 hover:bg-amber-700 flex items-center gap-2">Book Now  <span className="text-xl"><GoArrowUpRight/></span></button></Link>
     </section>
 
-
-
-        
-   
-        
-
   </div>
 </div>
 

@@ -20,6 +20,7 @@ import AdminOverview from "../components/Dashboard/pages/AdminOverview";
 import UserProtected from "./UserProtected";
 import AdminProtected from "./AdminProtected";
 import LoginProtected from "./LoginProtected";
+import PaymentHistory from "../components/Dashboard/pages/PaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -82,5 +83,6 @@ export const router = createBrowserRouter([
 // for user 
         {path: "my-bookings", element: <UserProtected>  <MyBooking/></UserProtected> },
         {path: "user-overview", element: <UserProtected>  <UserOverview/> </UserProtected>},
+        {path: "payment-history", element: <UserProtected>  <PaymentHistory/> </UserProtected>},
     ]},
 ])

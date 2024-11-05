@@ -4,13 +4,12 @@ import baseApi from "../../api/baseApi";
 const userApi = baseApi.injectEndpoints({
     endpoints : (builder) => ({
 
-        getUsers : builder.query({
-            query: (query) => ({
-                url : '/api/users',
+        getPaymentHistories : builder.query({
+            query: (email: string) => ({
+                url : `/api/payments/?userEmail=${email}`,
                 method : "GET",
-                params : query,
             }),
-            providesTags: ['Users']
+            providesTags: ['Payments']
         }),
 
         savePayment : builder.mutation({
@@ -20,10 +19,10 @@ const userApi = baseApi.injectEndpoints({
                 method : "POST", 
                 body : payload,  
             }),
-            // invalidatesTags: ['Single-user', 'Users' ]
+            invalidatesTags: ['Payments']
         }),
     })
 })
 
 export const {
-useSavePaymentMutation, } = userApi;
+useSavePaymentMutation, useGetPaymentHistoriesQuery } = userApi;

@@ -16,6 +16,8 @@ export default function Login() {
   const navigate = useNavigate();
   const [ errors, setErrors] = useState({emailError: '', passwordError: ''})
   const dispatch = useAppDispatch();
+    // demo credentials for testing 
+    const [ demoUser, setDemoUser ] = useState({})
 
 
     const handleLogin = async (e: any) => {
@@ -64,13 +66,24 @@ export default function Login() {
         <div className="p-10">
 
 
+      {/* Login with Demo Accound  */}
+      <div className="border rounded-lg p-1 bg-amber-400 mt-3">
+      <h1 className="text-lg lg:text-xl text-lime-600  px-6 py-3 font-bold ">Login With Demo For testing</h1>
+
+   <div className="flex items-center justify-center ">
+   <button onClick={()=> setDemoUser({ email: 'demoUser@gmail.com', password: '12345En$'})} className="bg-amber-600 p-1 rounded-md text-sm lg:text-base text-black font-semibold mr-5">Login As User</button>
+   <button onClick={()=> setDemoUser({ email: 'demoAdmin@gmail.com', password: '12345En$'})} className="bg-amber-600 p-1 rounded-md text-sm lg:text-base text-black font-semibold">Login As Admin</button>
+   </div>
+      </div>
+
         <form onSubmit={handleLogin} className="text-white">
 
           <div className="form-control">
             <label className="label">
               <span className="">Email</span>
             </label>
-            <input onChange={() => setErrors({emailError:'', passwordError: ''})}  type="email" placeholder="Email" className="input border border-zinc-600 focus:border-zinc-400 bg-transparent  " name="email" />
+            <input defaultValue={demoUser?.email}
+            onChange={() => setErrors({emailError:'', passwordError: ''})}  type="email" placeholder="Email" className="input border border-zinc-600 focus:border-zinc-400 bg-transparent  " name="email" />
             {errors?.emailError && <span className="text-red-600"> {errors?.emailError} </span>}
           </div>
 
@@ -79,7 +92,8 @@ export default function Login() {
             <label className="label">
               <span className="">Password</span>
             </label>
-            <input  onChange={() => setErrors({emailError:'', passwordError: ''})} type="text" placeholder="Password" className="input border border-zinc-600 focus:border-zinc-400 bg-transparent " name="password" />
+            <input defaultValue={demoUser?.password}
+             onChange={() => setErrors({emailError:'', passwordError: ''})} type="text" placeholder="Password" className="input border border-zinc-600 focus:border-zinc-400 bg-transparent " name="password" />
             {errors?.passwordError && <span className="text-red-600"> {errors?.passwordError}</span>}
           
 

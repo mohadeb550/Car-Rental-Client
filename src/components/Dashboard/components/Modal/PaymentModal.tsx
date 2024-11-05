@@ -31,12 +31,12 @@ export default function  PaymentModal({ setOpen, bookingId} : TModalProps) {
   return (
     <section className="w-screen h-screen fixed top-0 left-0 right-0 bottom-0 z-50  bg-black/30 backdrop-blur-sm flex justify-center items-center overflow-y-auto">  
        
-       <div className="w-[400px] md:w-[600px] p-7 bg-white rounded-md relative" >
+       <div className="w-[400px] md:w-[600px] p-7 bg-[#171A21] border border-amber-500/80 rounded-lg relative" >
 
         {/* loading white layer  */}
-      {isLoading? <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-white/80 rounded-md flex justify-center items-center"> 
+      {isLoading? <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-[#171A21]/80 rounded-md flex justify-center items-center"> 
         <ClipLoader
-           color='#000002'
+           color='#F59E0B'
            loading={isLoading}
            size={60}
            aria-label="Loading Spinner"
@@ -48,15 +48,15 @@ export default function  PaymentModal({ setOpen, bookingId} : TModalProps) {
         <img className="md:w-36 h-20 object-contain" src={booking?.car?.images[0]}/>
 
         <div>
-            <h2 className="inter-bold text-zinc-600 text-left">{booking?.car?.name}</h2>
-            <h2 className=" text-zinc-600 flex items-center gap-2"><IoLocation/> {booking?.location}</h2>
+            <h2 className="inter-bold text-gray-300 text-left">{booking?.car?.name}</h2>
+            <h2 className=" text-gray-300 flex items-center gap-2"><IoLocation/> {booking?.location}</h2>
         </div>
       
       </section>
 
 
           {/* payment   */}
-        <section className="max-w-5xl mx-auto shadow-xl rounded-md border p-5 mt-12">
+        <section className="max-w-5xl mx-auto shadow-xl rounded-md p-5 mt-12">
         <div className="bg-amber-500 text-white/80 w-16 h-16 rounded-full -mt-14 mx-auto flex justify-center items-center p-2">
             <MdOutlinePayment size={35}  />
         </div>

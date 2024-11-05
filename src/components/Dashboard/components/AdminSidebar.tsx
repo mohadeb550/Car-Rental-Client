@@ -17,6 +17,13 @@ const AdminSidebar = () => {
        </NavLink>
     </li>
             <li>
+           <NavLink to="/dashboard/add-car" className={({isActive})=> isActive? ' flex items-center p-2 text-amber-400 inter-regular  ': 'flex items-center p-2 text-gray-200 rounded-lg ' }>
+           <FaCarAlt size={22} className="" />
+              <span className="flex-1 ms-3 text-sm lg:text-base whitespace-nowrap">Add new car</span>
+             
+           </NavLink>
+    </li>
+            <li>
            <NavLink to="/dashboard/manage-cars" className={({isActive})=> isActive? ' flex items-center p-2 text-amber-400 inter-regular  ': 'flex items-center p-2 text-gray-200 rounded-lg ' }>
            <FaCarAlt size={22} className="" />
               <span className="flex-1 ms-3 text-sm lg:text-base whitespace-nowrap">Manage Cars</span>

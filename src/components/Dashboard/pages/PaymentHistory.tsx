@@ -61,14 +61,13 @@ export default function  PaymentHistory() {
         Date
               </th>
              
-             
-            
+      
             </tr>
           </thead>
           <tbody className="relative">
 
           {isLoading && <PulseLoader
-           color='#2563EB'
+           color='#F9721C'
           className="absolute top-14 left-2/4"
            size={13}
            aria-label="Loading Spinner"

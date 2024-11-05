@@ -21,6 +21,7 @@ import UserProtected from "./UserProtected";
 import AdminProtected from "./AdminProtected";
 import LoginProtected from "./LoginProtected";
 import PaymentHistory from "../components/Dashboard/pages/PaymentHistory";
+import AddCar from "../components/Dashboard/pages/AddCar";
 
 
 export const router = createBrowserRouter([
@@ -75,6 +76,7 @@ export const router = createBrowserRouter([
 
         // for admin
         {path: "manage-cars", element: <AdminProtected> <ManageCars/></AdminProtected> },
+        {path: "add-car", element: <AdminProtected> <AddCar/></AdminProtected> },
         {path: "manage-bookings", element: <AdminProtected> <ManageBooking/></AdminProtected> },
         {path: "manage-return-cars", element: <AdminProtected> <ManageReturnCars/></AdminProtected> },
         {path: "manage-users", element: <AdminProtected> <ManageUsers/></AdminProtected> },

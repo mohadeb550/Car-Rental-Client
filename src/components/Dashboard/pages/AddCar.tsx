@@ -3,7 +3,7 @@
 import {useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 import { toast } from "sonner";
-import { useCreateCarMutation } from "../../../../redux/features/car/carApi";
+import { useCreateCarMutation } from "../../../redux/features/car/carApi";
 
 // type for car
 export type TCar = {
@@ -23,13 +23,8 @@ export type TCar = {
     updatedAt? : string,
 };
 
-type TModalProps = {
-  open : boolean,
-  setOpen : React.Dispatch<React.SetStateAction<boolean>>
-}
 
-
-export default function CreateCarModal({ open, setOpen} : TModalProps) {
+export default function AddCar() {
 
   const { register, handleSubmit } = useForm();
   const [createCar, { isLoading }] = useCreateCarMutation();
@@ -56,8 +51,6 @@ export default function CreateCarModal({ open, setOpen} : TModalProps) {
     const response =  await createCar(carData).unwrap();
 
   if(response?.success){
-    // close the modal 
-    setOpen(false)
     // show a toast 
     toast.success('New Car has been created')
   }
@@ -70,14 +63,14 @@ export default function CreateCarModal({ open, setOpen} : TModalProps) {
 
 
   return (
-    <section className="w-screen absolute top-0 left-0 right-0 bottom-0 z-50  bg-black/30 backdrop-blur-sm flex justify-center py-10 overflow-y-auto">  
+    <section className=" z-50 flex justify-center py-1 mb-8 rounded-lg">  
        
-       <form className="w-[400px] md:w-[600px] h-[870px] p-7 bg-white rounded-md relative" onSubmit={handleSubmit(onSubmit)}>
+       <form className="w-full mx-4 md:mx-6 xl:mx-10 p-7 bg-[#000209] rounded-lg  relative" onSubmit={handleSubmit(onSubmit)}>
 
         {/* loading white layer  */}
-      {isLoading && <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-white/80 rounded-md flex justify-center items-center"> 
+      {isLoading && <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-black/80 rounded-md flex justify-center items-center"> 
         <ClipLoader
-           color='#000002'
+           color='#EFB622'
            loading={isLoading}
           //  cssOverride={override}
            size={60}
@@ -86,13 +79,13 @@ export default function CreateCarModal({ open, setOpen} : TModalProps) {
       </div>}
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Car Name</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("name")} />
+        <label className="font-semibold text-gray-400">Car Name</label>
+        <input type="text" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("name")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Car Type</label>
-         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("carType")} >
+        <label className="font-semibold text-gray-400">Car Type</label>
+         <select className="w-full outline p-2 mt-3 outline-gray-400/50 text-gray-400 bg-transparent rounded-sm outline-1 text-xs md:text-sm " {...register("carType")} >
          <option disabled selected>Select</option>
               <option value='compact'>Compact</option>
               <option value='suv'>SUVs</option>
@@ -105,8 +98,8 @@ export default function CreateCarModal({ open, setOpen} : TModalProps) {
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Electric</label>
-         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("isElectric")} >
+        <label className="font-semibold text-gray-400">Electric</label>
+         <select className="w-full outline p-2 mt-3 outline-gray-400/50 text-gray-400 bg-transparent rounded-sm outline-1 text-xs md:text-sm " {...register("isElectric")} >
               <option disabled selected>Select</option>
               <option value='yes'>Yes</option>
               <option value='no'>No</option>
@@ -115,35 +108,35 @@ export default function CreateCarModal({ open, setOpen} : TModalProps) {
         </div>
      
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Color</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("color")} />
+        <label className="font-semibold text-gray-400">Color</label>
+        <input type="text" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("color")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Location</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("location")} />
+        <label className="font-semibold text-gray-400">Location</label>
+        <input type="text" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("location")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Price Per Hour</label>
-        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("pricePerHour")} />
+        <label className="font-semibold text-gray-400">Price Per Hour</label>
+        <input type="number" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("pricePerHour")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Features <span className="text-sm inter-regular text-lime-600"> (Each feature must be separated by comma)</span> </label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("features")} />
+        <label className="font-semibold text-gray-400">Features <span className="text-sm inter-regular text-lime-600"> (Each feature must be separated by comma)</span> </label>
+        <input type="text" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("features")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Description</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("description")} />
+        <label className="font-semibold text-gray-400">Description</label>
+        <input type="text" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("description")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold mb-3">Images (URL)</label>
-        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm" {...register("image1")} placeholder="image 1"/>
-        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm" {...register("image2")} placeholder="image 2"/>
-        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm" {...register("image3")} placeholder="image 3"/>
+        <label className="font-semibold text-gray-400 mb-3">Images (URL)</label>
+        <input type="text" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm" {...register("image1")} placeholder="image 1"/>
+        <input type="text" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm" {...register("image2")} placeholder="image 2"/>
+        <input type="text" className="outline-none bg-transparent text-gray-300 border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm" {...register("image3")} placeholder="image 3"/>
 
         {/* {maxImageError &&  <span className="text-red-500 font-semibold text-sm mt-1">{maxImageError}</span> } */}
         
@@ -151,7 +144,7 @@ export default function CreateCarModal({ open, setOpen} : TModalProps) {
        
 
 
-<button type="submit" className="px-8 text-sm lg:text-base mt-6 mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-black hover:bg-gray-800 "> Create</button>
+<button type="submit" className="px-8 text-sm lg:text-base mt-6 mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-gray-800 hover:bg-gray-800 "> Create</button>
 
 <button onClick={() => setOpen(!open)} className="px-8 text-sm lg:text-base mr-3 py-2 md:py-2 font-semibold text-white rounded transition bg-red-600 hover:bg-red-700 "> Close </button>
 </form>

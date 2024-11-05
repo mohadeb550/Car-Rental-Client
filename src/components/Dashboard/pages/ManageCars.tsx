@@ -1,14 +1,12 @@
 import { useState } from "react"
 import { ClipLoader } from "react-spinners";
 import Swal from "sweetalert2";
-import CreateCarModal, { TCar } from "../components/Modal/CreateCarModal";
 import UpdateCarModal from "../components/Modal/UpdateCarModal";
 import { useDeleteCarMutation, useGetCarsQuery } from "../../../redux/features/car/carApi";
+import { TCar } from "./AddCar";
 
 
 export default function ManageCars() {
-
-    const [openCreateModal, setOpenCreateModal ] = useState<boolean>(false);
     const [openUpdateModal, setOpenUpdateModal ] = useState<boolean>(false);
     const { data, isLoading } = useGetCarsQuery(undefined);
     const [ deleteCarFromDB ] = useDeleteCarMutation();
@@ -52,14 +50,6 @@ export default function ManageCars() {
    </div>
 
    <div className="text-right mb-7">
-   <button 
-   onClick={() => setOpenCreateModal(true)}
-    className=" px-6 text-sm lg:text-base mr-3 py-2 md:py-2 xl:py-3 font-semibold text-gray-900 rounded transition bg-zinc-200 hover:bg-gray-200 whitespace-nowrap">Add New Product</button>
-
-
-   {/* create product modal  */}
-   {openCreateModal && <CreateCarModal open={openCreateModal} setOpen={setOpenCreateModal}/>}
-
 
    {/* update product modal  */}
    {openUpdateModal && <UpdateCarModal carId={updateProductId} open={openUpdateModal} setOpen={setOpenUpdateModal}/>}

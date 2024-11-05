@@ -91,7 +91,7 @@ export default function ManageBooking() {
             <tr className="bg-amber-600 h-8 text-white/95 text-[12px] md:text-base ">
               <th
                 scope="col"
-                className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600 rounded-l-2xl">
+                className="border-r px-6 py-0 md:py-2 lg:py-4 border-zinc-600 rounded-l-xl">
                Image
               </th>
               <th

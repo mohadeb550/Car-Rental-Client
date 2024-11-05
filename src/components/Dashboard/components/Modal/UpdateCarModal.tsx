@@ -76,14 +76,14 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
  
   }
   return (
-    <section className="w-screen  absolute top-0 left-0 right-0 bottom-0 z-50  bg-black/30 backdrop-blur-sm flex justify-center py-10 overflow-y-auto">  
+    <section className="w-screen  absolute top-0 left-0 right-0 bottom-0 z-50  bg-black/30 backdrop-blur-sm flex justify-center py-10 px-3 overflow-y-auto">  
        
-       <form className="w-[400px] md:w-[600px] h-[860px] p-7 bg-white rounded-md relative" onSubmit={handleSubmit(onSubmit)}>
+       <form className="w-[400px] md:w-[800px] h-[860px] p-7 bg-black border border-amber-400/80 rounded-md relative " onSubmit={handleSubmit(onSubmit)}>
 
         {/* loading white layer  */}
-      {dataLoading || updateLoading? <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-white/80 rounded-md flex justify-center items-center"> 
+      {dataLoading || updateLoading? <div className="w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-transparent rounded-md flex justify-center items-center"> 
         <ClipLoader
-           color='#000002'
+           color='#F7BC23'
           //  loading={dataLoading || updateLoading}
            size={60}
            aria-label="Loading Spinner"
@@ -91,13 +91,13 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
       </div> : ""}
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Name</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("name")} />
+        <label className="font-semibold text-gray-400">Name</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm"  {...register("name")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Car Type</label>
-         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("carType")} >
+        <label className="font-semibold text-gray-400">Car Type</label>
+         <select className="w-full outline p-2 mt-3 text-gray-400 bg-transparent outline-gray-600 rounded-sm outline-1 text-xs md:text-sm " {...register("carType")} >
          <option disabled selected>Select</option>
               <option value='compact'>Compact</option>
               <option value='suv'>SUVs</option>
@@ -110,8 +110,8 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Electric</label>
-         <select className="w-full outline p-2 mt-3 outline-black/20 rounded-sm outline-1 text-xs md:text-sm " {...register("isElectric")} >
+        <label className="font-semibold text-gray-400">Electric</label>
+         <select className="w-full outline p-2 mt-3 text-gray-400 bg-transparent outline-gray-600 rounded-sm outline-1 text-xs md:text-sm " {...register("isElectric")} >
               <option disabled selected>Select</option>
               <option value='yes'>Yes</option>
               <option value='no'>No</option>
@@ -120,37 +120,37 @@ export default function UpdateCarModal({ open, setOpen, carId} : TModalProps) {
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Color</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("color")} />
+        <label className="font-semibold text-gray-400">Color</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm" {...register("color")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Location</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("location")} />
+        <label className="font-semibold text-gray-400">Location</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm" {...register("location")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Price Per Hour</label>
-        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("pricePerHour")} />
+        <label className="font-semibold text-gray-400">Price Per Hour</label>
+        <input type="number" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm" {...register("pricePerHour")} />
         </div>
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Features <span className="text-sm inter-regular text-lime-600"> (Each feature must be separated by comma)</span> </label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm" {...register("features")} />
+        <label className="font-semibold text-gray-400">Features <span className="text-sm inter-regular text-lime-600"> (Each feature must be separated by comma)</span> </label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm" {...register("features")} />
         </div>
 
 
         <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold">Description</label>
-        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("description")} />
+        <label className="font-semibold text-gray-400">Description</label>
+        <input type="text" className="outline-none border-b-2 border-gray-700 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm"  {...register("description")} />
         </div>
         
         {/* after fetching data it will render  */}
         {isSuccess &&  <div className="flex flex-col justify-start items-start mb-3">
-        <label className="font-semibold mb-3">Images (URL)</label>
-        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("image1")} placeholder="image 1"/>
-        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("image2")} placeholder="image 2"/>
-        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 w-full py-1 rounded-sm"  {...register("image3")} placeholder="image 3"/>
+        <label className="font-semibold text-gray-400 mb-3">Images (URL)</label>
+        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm"  {...register("image1")} placeholder="image 1"/>
+        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm"  {...register("image2")} placeholder="image 2"/>
+        <input type="text" className="outline-none border-b-2 border-gray-600 focus:border-blue-600 text-gray-400 bg-transparent w-full py-1 rounded-sm"  {...register("image3")} placeholder="image 3"/>
         </div>}
        
 

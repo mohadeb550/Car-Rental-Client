@@ -76,6 +76,52 @@ const AdminOverview = () => {
 
 
 
+
+  
+  const data1 = {
+    labels: ["Pending Cars", "Returned Cars", "Unavailable Cars"],
+    datasets: [
+      {
+        label: "Statistics",
+        data: [
+          14,
+          21,
+          11,
+        ],
+        backgroundColor: ["#3b82f6", "#10b981", "#f59e0b"],
+        borderColor: ["#3b82f6", "#10b981", "#f59e0b"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Chart options including custom table border color
+const options1 = {
+responsive: true,
+scales: {
+  x: {
+    grid: {
+      color: "#565d6e", // Set your desired x-axis grid color
+      borderColor: "#D1D5DB", // Set your desired x-axis border color
+    },
+    ticks: {
+      color: "#D1D5DB", // Set x-axis labels color
+    },
+  },
+  y: {
+    grid: {
+      color: "#565d6e", // Set your desired y-axis grid color
+      borderColor: "#D1D5DB", // Set your desired y-axis border color
+    },
+    ticks: {
+      color: "#D1D5DB", // Set y-axis labels color
+    },
+  },
+},
+};
+
+
+
   return (
     <div className="container mx-auto p-4 sm:p-8">
     <h2 className="text-3xl lg:text-4xl carter-one-regular text-center mb-8 text-gray-300 ">Statistics</h2>
@@ -112,8 +158,11 @@ const AdminOverview = () => {
     </div>
     <div className="mt-8">
     <h2 className="text-3xl lg:text-4xl carter-one-regular text-center my-10 text-gray-300 ">Statistic Graph</h2>
-      <div className="card shadow-lg p-4 md:p-6 bg-[#171A21] rounded-xl">
-        <Bar data={data} options={options} />
+      <div className="p-4 md:p-6 flex flex-col xl:flex-row justify-around gap-6 xl:h-96">
+        
+        <div className="bg-[#171A21] p-3 w-full flex items-center justify-center">  <Bar data={data} options={options} /></div>
+        <div className="bg-[#171A21] p-3 w-full flex items-center justify-center ">   <Bar data={data1} options={options1} /></div>
+      
       </div>
     </div>
   </div>
